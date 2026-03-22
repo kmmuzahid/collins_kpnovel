@@ -1,0 +1,59 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_tamplates/config/route/auth_guard.dart';
+import 'package:riverpod_tamplates/src/features/authentication/presentation/forgot_password_screen.dart';
+import 'package:riverpod_tamplates/src/features/authentication/presentation/login_screen.dart';
+import 'package:riverpod_tamplates/src/features/authentication/presentation/otp_screen.dart';
+import 'package:riverpod_tamplates/src/features/authentication/presentation/signup_screen.dart';
+import 'package:riverpod_tamplates/src/features/home/presentation/home_screen.dart';
+import 'package:riverpod_tamplates/src/features/home/presentation/search_screen.dart';
+import 'package:riverpod_tamplates/src/features/home/presentation/wishlist_screen.dart';
+import 'package:riverpod_tamplates/src/features/navigation/presentation/navigation_screen.dart';
+import 'package:riverpod_tamplates/src/features/onboarding/presentation/onboarding_screen.dart';
+import 'package:riverpod_tamplates/src/features/profile/presentation/change_password_screen.dart';
+import 'package:riverpod_tamplates/src/features/profile/presentation/edit_profile_screen.dart';
+import 'package:riverpod_tamplates/src/features/profile/presentation/faq_screen.dart';
+import 'package:riverpod_tamplates/src/features/profile/presentation/notification_screen.dart';
+import 'package:riverpod_tamplates/src/features/profile/presentation/privacy_screen.dart';
+import 'package:riverpod_tamplates/src/features/profile/presentation/profile_screen.dart';
+import 'package:riverpod_tamplates/src/features/profile/presentation/terms_screen.dart';
+import 'package:riverpod_tamplates/src/features/splash/presentation/splash_screen.dart';
+
+part 'app_router.gr.dart';
+
+AppRouter appRouter = AppRouter();
+
+@AutoRouterConfig(replaceInRouteName: 'Screen,Route')
+class AppRouter extends RootStackRouter {
+  late WidgetRef ref;
+
+  void init(WidgetRef ref) {
+    this.ref = ref;
+  }
+
+  @override
+  List<AutoRoute> get routes => [
+    AutoRoute(page: SplashRoute.page, initial: true),
+    AutoRoute(page: OnboardingRoute.page),
+    AutoRoute(page: LoginRoute.page),
+    AutoRoute(page: SignupRoute.page),
+    AutoRoute(page: ForgotPasswordRoute.page),
+    AutoRoute(page: OtpRoute.page),
+    AutoRoute(
+      page: NavigationRoute.page,
+      guards: [AuthGuard(ref)],
+      children: [
+        AutoRoute(page: HomeRoute.page),
+        AutoRoute(page: SearchRoute.page),
+        AutoRoute(page: WishlistRoute.page),
+        AutoRoute(page: ProfileRoute.page),
+      ],
+    ),
+    AutoRoute(page: EditProfileRoute.page, guards: [AuthGuard(ref)]),
+    AutoRoute(page: ChangePasswordRoute.page, guards: [AuthGuard(ref)]),
+    AutoRoute(page: TermsRoute.page),
+    AutoRoute(page: PrivacyRoute.page),
+    AutoRoute(page: FaqRoute.page),
+    AutoRoute(page: NotificationRoute.page, guards: [AuthGuard(ref)]),
+  ];
+}
