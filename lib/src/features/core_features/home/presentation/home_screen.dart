@@ -12,7 +12,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: const CommonAppBar(title: AppStrings.home_title, hideBack: true),
+      appBar: const CommonAppBar(title: AppStringsCore.home_title, hideBack: true),
       body: Padding(
         padding: EdgeInsets.all(AppUiConstants.main_screen_padding),
         child: Column(

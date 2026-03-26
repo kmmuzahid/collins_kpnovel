@@ -13,7 +13,7 @@ class SearchScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: const CommonAppBar(
-        title: AppStrings.search_title,
+        title: AppStringsCore.search_title,
         hideBack: true,
       ),
       body: Padding(

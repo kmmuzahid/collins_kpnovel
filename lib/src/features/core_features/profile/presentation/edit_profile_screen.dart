@@ -15,7 +15,7 @@ class EditProfileScreen extends ConsumerWidget {
     final profileState = ref.watch(profileNotifierProvider);
 
     return Scaffold(
-      appBar: const CommonAppBar(title: AppStrings.edit_profile_title),
+      appBar: const CommonAppBar(title: AppStringsCore.edit_profile_title),
       body: FormBuilder<Map<String, String>>(
         entity: const {'name': '', 'phone': '', 'email': ''},
         builder: (context, formKey, entity) {

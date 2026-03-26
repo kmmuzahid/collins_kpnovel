@@ -11,7 +11,7 @@ class NotificationScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: const CommonAppBar(title: AppStrings.notifications_title),
+      appBar: const CommonAppBar(title: AppStringsCore.notifications_title),
       body: SmartListLoader(
         itemCount: 20,
         itemBuilder: (context, index) {

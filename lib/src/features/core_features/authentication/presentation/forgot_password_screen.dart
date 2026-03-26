@@ -14,7 +14,7 @@ class ForgotPasswordScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: const CommonAppBar(title: AppStrings.forgot_password_title, hideBack: false),
+      appBar: const CommonAppBar(title: AppStringsCore.forgot_password_title, hideBack: false),
       body: FormBuilder(
         entity: ForgetPasswordEntity(),
         builder: (context, formKey, entity) {

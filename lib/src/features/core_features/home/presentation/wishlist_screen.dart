@@ -13,7 +13,7 @@ class WishlistScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: const CommonAppBar(
-        title: AppStrings.wishlist_title,
+        title: AppStringsCore.wishlist_title,
         hideBack: true,
       ),
       body: Padding(

@@ -16,7 +16,7 @@ class SignupScreen extends ConsumerWidget {
     final authNotifier = ref.read(authProvider.notifier);
 
     return Scaffold(
-      appBar: const CommonAppBar(title: AppStrings.signup_title, hideBack: false),
+      appBar: const CommonAppBar(title: AppStringsCore.signup_title, hideBack: false),
       body: FormBuilder<Map<String, String>>(
         entity: const {'name': '', 'email': '', 'password': ''},
         builder: (context, formKey, entity) {
@@ -43,7 +43,7 @@ class SignupScreen extends ConsumerWidget {
                 ),
                 AppUiConstants.button_spacing.height,
                 CommonButton(
-                  titleText: AppStrings.signup_title,
+                  titleText: AppStringsCore.signup_title,
                   isLoading: authState.isLoading,
                   onTap: () {
                     if (formKey.currentState?.validate() ?? false) {

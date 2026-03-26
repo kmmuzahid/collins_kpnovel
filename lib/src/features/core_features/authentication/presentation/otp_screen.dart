@@ -14,7 +14,7 @@ class OtpScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final authNotifier = ref.read(authProvider.notifier);
     return Scaffold(
-      appBar: const CommonAppBar(title: AppStrings.verify_otp_title),
+      appBar: const CommonAppBar(title: AppStringsCore.verify_otp_title),
       body: FormBuilder<Map<String, String>>(
         entity: const {'otp': ''},
         builder: (context, formKey, entity) {

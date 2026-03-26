@@ -1,4 +1,4 @@
-class AppStrings {
+class AppStringsCore {
   static const String login_title = 'Login';
   static const String signup_title = 'Signup';
   static const String forgot_password_title = 'Forgot Password';

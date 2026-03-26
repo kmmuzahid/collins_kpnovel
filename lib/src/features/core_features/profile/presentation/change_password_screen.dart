@@ -15,7 +15,7 @@ class ChangePasswordScreen extends ConsumerWidget {
     final profileState = ref.watch(profileNotifierProvider);
 
     return Scaffold(
-      appBar: const CommonAppBar(title: AppStrings.change_password_title),
+      appBar: const CommonAppBar(title: AppStringsCore.change_password_title),
       body: FormBuilder<Map<String, String>>(
         entity: const {'old': '', 'new': '', 'confirm': ''},
         builder: (context, formKey, entity) {
@@ -42,7 +42,7 @@ class ChangePasswordScreen extends ConsumerWidget {
                 ),
                 AppUiConstants.button_spacing.height,
                 CommonButton(
-                  titleText: AppStrings.change_password_title,
+                  titleText: AppStringsCore.change_password_title,
                   isLoading: profileState.isLoading,
                   onTap: () {
                     if (formKey.currentState?.validate() ?? false) {

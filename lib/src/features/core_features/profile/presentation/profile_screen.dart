@@ -13,7 +13,7 @@ class ProfileScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: const CommonAppBar(title: AppStrings.profile_title, hideBack: true),
+      appBar: const CommonAppBar(title: AppStringsCore.profile_title, hideBack: true),
       body: ListView(
         children: [
           const UserAccountsDrawerHeader(
@@ -26,12 +26,12 @@ class ProfileScreen extends ConsumerWidget {
           ),
           ListTile(
             leading: const Icon(Icons.edit, color: Colors.blue),
-            title: const CommonText(text: AppStrings.edit_profile_title),
+            title: const CommonText(text: AppStringsCore.edit_profile_title),
             onTap: () => appRouter.push(const EditProfileRoute()),
           ),
           ListTile(
             leading: const Icon(Icons.lock, color: Colors.orange),
-            title: const CommonText(text: AppStrings.change_password_title),
+            title: const CommonText(text: AppStringsCore.change_password_title),
             onTap: () => appRouter.push(const ChangePasswordRoute()),
           ),
           const Divider(),
