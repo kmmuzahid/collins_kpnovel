@@ -1,13 +1,13 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  plugins: 
+  plugins:
     - custom_lint
     
   language:
     strict-casts: false
     strict-inference: false
-    # strict-raw-types: true
+    # strict-raw-types: true 
   errors:
     # This turns inference failures into hard errors
     todo: ignore 

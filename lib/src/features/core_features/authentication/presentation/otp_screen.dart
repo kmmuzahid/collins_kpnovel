@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/src/constants/app_strings.dart';
 import 'package:riverpod_tamplates/src/constants/app_ui_constants.dart';
-import 'package:riverpod_tamplates/src/features/authentication/application/auth_notifier.dart';
+import 'package:riverpod_tamplates/src/features/core_features/authentication/riverpod/auth_notifier.dart';
 
 @RoutePage()
 class OtpScreen extends ConsumerWidget {
@@ -12,6 +12,7 @@ class OtpScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final authNotifier = ref.read(authProvider.notifier);
     return Scaffold(
       appBar: const CommonAppBar(title: AppStrings.verify_otp_title),
       body: FormBuilder<Map<String, String>>(
@@ -37,9 +38,7 @@ class OtpScreen extends ConsumerWidget {
                   titleText: 'Verify',
                   onTap: () {
                     if (formKey.currentState?.validate() ?? false) {
-                      ref
-                          .read(authNotifierProvider.notifier)
-                          .verifyOtp(entity['otp'] ?? '');
+                      authNotifier.verifyOtp(entity['otp'] ?? '');
                     }
                   },
                 ),
@@ -50,14 +49,9 @@ class OtpScreen extends ConsumerWidget {
                     const CommonText(text: 'Didn\'t receive the code? '),
                     TextButton(
                       onPressed: () {
-                        ref
-                            .read(authNotifierProvider.notifier)
-                            .sendOtp('user@example.com');
+                        authNotifier.sendOtp('user@example.com');
                       },
-                      child: const CommonText(
-                        text: 'Resend Now',
-                        textColor: Colors.blue,
-                      ),
+                      child: const CommonText(text: 'Resend Now', textColor: Colors.blue),
                     ),
                   ],
                 ),

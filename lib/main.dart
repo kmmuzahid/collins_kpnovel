@@ -5,7 +5,17 @@ import 'package:riverpod_tamplates/config/corekit/corekit_config_impl.dart';
 import 'package:riverpod_tamplates/config/route/app_router.dart';
 import 'package:riverpod_tamplates/config/route/app_router_observer.dart';
 import 'package:riverpod_tamplates/config/theme/app_theme_data.dart';
+class CustomScrollBehavior extends MaterialScrollBehavior {
+  @override
+  ScrollPhysics getScrollPhysics(BuildContext context) {
+    return const BouncingScrollPhysics(); // or ClampingScrollPhysics, etc.
+  }
 
+  @override
+  ScrollViewKeyboardDismissBehavior getKeyboardDismissBehavior(BuildContext context) {
+    return ScrollViewKeyboardDismissBehavior.onDrag;
+  }
+}
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const ProviderScope(child: MyApp()));
@@ -18,13 +28,17 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     appRouter.init(ref);
     return CoreKit.router(
+      scrollBehavior: CustomScrollBehavior(),
       title: 'Riverpod Template',
+      navigatorKey: appRouter.navigatorKey,
       config: CorekitConfigImpl(),
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter.config(
         navigatorObservers: () => [AppRouterObserver()],
       ),
-      theme: themeData,
+      theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
+      themeMode: ThemeMode.system,
     );
   }
 }

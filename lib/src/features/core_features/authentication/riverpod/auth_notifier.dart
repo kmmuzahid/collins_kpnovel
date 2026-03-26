@@ -1,14 +1,12 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_tamplates/config/route/app_router.dart';
-import 'package:riverpod_tamplates/src/features/authentication/application/auth_state.dart';
-import 'package:riverpod_tamplates/src/features/authentication/infrastructure/auth_repository.dart';
+import 'package:riverpod_tamplates/src/features/core_features/authentication/data/auth_repository.dart';
+import 'package:riverpod_tamplates/src/features/core_features/authentication/riverpod/auth_state.dart';
 
-final authNotifierProvider = NotifierProvider<AuthNotifier, AuthState>(
-  AuthNotifier._,
-);
+part 'auth_notifier.g.dart';
 
-class AuthNotifier extends Notifier<AuthState> {
-  AuthNotifier._();
+@Riverpod(keepAlive: true)
+class AuthNotifier extends _$AuthNotifier {
   late AuthRepository _repository;
 
   @override

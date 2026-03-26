@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/config/route/app_router.dart';
 import 'package:riverpod_tamplates/src/constants/app_strings.dart';
 import 'package:riverpod_tamplates/src/constants/app_ui_constants.dart';
-import 'package:riverpod_tamplates/src/features/authentication/application/auth_notifier.dart';
+import 'package:riverpod_tamplates/src/features/core_features/authentication/riverpod/auth_notifier.dart';
 
 @RoutePage()
 class LoginScreen extends ConsumerWidget {
@@ -13,8 +13,9 @@ class LoginScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authState = ref.watch(authNotifierProvider);
-    
+    final authState = ref.watch(authProvider);
+    final authNotifier = ref.read(authProvider.notifier);
+
     return Scaffold(
       appBar: const CommonAppBar(title: AppStrings.login_title, hideBack: true),
       body: FormBuilder<Map<String, String>>(
@@ -42,10 +43,7 @@ class LoginScreen extends ConsumerWidget {
                   isLoading: authState.isLoading,
                   onTap: () {
                     if (formKey.currentState?.validate() ?? false) {
-                      ref.read(authNotifierProvider.notifier).login(
-                        entity['email']!,
-                        entity['password']!,
-                      );
+                      authNotifier.login(entity['email']!, entity['password']!);
                     }
                   },
                 ),

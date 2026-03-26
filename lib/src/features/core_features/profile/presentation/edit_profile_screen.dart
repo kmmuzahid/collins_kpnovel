@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/src/constants/app_strings.dart';
 import 'package:riverpod_tamplates/src/constants/app_ui_constants.dart';
-import 'package:riverpod_tamplates/src/features/profile/application/profile_notifier.dart';
+import 'package:riverpod_tamplates/src/features/core_features/profile/application/profile_notifier.dart';
 
 @RoutePage()
 class EditProfileScreen extends ConsumerWidget {
@@ -23,13 +23,7 @@ class EditProfileScreen extends ConsumerWidget {
             padding: EdgeInsets.all(AppUiConstants.main_screen_padding),
             child: Column(
               children: [
-                const Center(
-                  child: CommonImagePicker(
-                    width: 120,
-                    height: 120,
-                    borderRadius: 60,
-                  ),
-                ),
+                const Center(child: CommonImagePicker(width: 120, height: 120, borderRadius: 60)),
                 20.height,
                 CommonTextField(
                   hintText: 'Full Name',
@@ -54,11 +48,13 @@ class EditProfileScreen extends ConsumerWidget {
                   isLoading: profileState.isLoading,
                   onTap: () {
                     if (formKey.currentState?.validate() ?? false) {
-                      ref.read(profileNotifierProvider.notifier).updateProfile(
-                        name: entity['name'],
-                        phone: entity['phone'],
-                        email: entity['email'],
-                      );
+                      ref
+                          .read(profileNotifierProvider.notifier)
+                          .updateProfile(
+                            name: entity['name'],
+                            phone: entity['phone'],
+                            email: entity['email'],
+                          );
                     }
                   },
                 ),

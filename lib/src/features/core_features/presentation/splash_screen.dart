@@ -3,7 +3,7 @@ import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/config/route/app_router.dart';
-import 'package:riverpod_tamplates/src/features/authentication/infrastructure/auth_repository.dart';
+import 'package:riverpod_tamplates/src/features/core_features/authentication/data/auth_repository.dart';
 
 @RoutePage()
 class SplashScreen extends ConsumerStatefulWidget {
@@ -48,11 +48,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
           children: [
             const Icon(Icons.flash_on, size: 80, color: Colors.blue),
             20.height,
-            const CommonText(
-              text: 'Riverpod Template',
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
+            const CommonText(text: 'Riverpod Template', fontSize: 24, fontWeight: FontWeight.bold),
             10.height,
             const CircularProgressIndicator(),
           ],

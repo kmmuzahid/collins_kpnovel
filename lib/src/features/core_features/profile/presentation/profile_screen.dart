@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/config/route/app_router.dart';
 import 'package:riverpod_tamplates/src/constants/app_strings.dart';
-import 'package:riverpod_tamplates/src/features/authentication/application/auth_notifier.dart';
+import 'package:riverpod_tamplates/src/features/core_features/authentication/riverpod/auth_notifier.dart';
 
 @RoutePage()
 class ProfileScreen extends ConsumerWidget {
@@ -54,7 +54,7 @@ class ProfileScreen extends ConsumerWidget {
           ListTile(
             leading: const Icon(Icons.logout, color: Colors.red),
             title: const CommonText(text: 'Logout', textColor: Colors.red),
-            onTap: () => ref.read(authNotifierProvider.notifier).logout(),
+            onTap: () => ref.read(authProvider.notifier).logout(),
           ),
         ],
       ),

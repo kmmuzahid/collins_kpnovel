@@ -1,11 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/config/route/app_router.dart';
-import 'package:riverpod_tamplates/src/features/profile/application/profile_state.dart';
-import 'package:riverpod_tamplates/src/features/profile/infrastructure/profile_repository.dart';
+import 'package:riverpod_tamplates/src/features/core_features/profile/application/profile_state.dart';
+import 'package:riverpod_tamplates/src/features/core_features/profile/infrastructure/profile_repository.dart';
 
-final profileNotifierProvider = NotifierProvider<ProfileNotifier, ProfileState>(
-  ProfileNotifier._,
-);
+final profileNotifierProvider = NotifierProvider<ProfileNotifier, ProfileState>(ProfileNotifier._);
 
 class ProfileNotifier extends Notifier<ProfileState> {
   ProfileNotifier._();

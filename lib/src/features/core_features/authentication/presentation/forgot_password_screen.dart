@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/config/route/app_router.dart';
 import 'package:riverpod_tamplates/src/constants/app_strings.dart';
 import 'package:riverpod_tamplates/src/constants/app_ui_constants.dart';
+import 'package:riverpod_tamplates/src/features/core_features/authentication/domain/forget_password_entity.dart';
 
 @RoutePage()
 class ForgotPasswordScreen extends ConsumerWidget {
@@ -14,8 +15,8 @@ class ForgotPasswordScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: const CommonAppBar(title: AppStrings.forgot_password_title, hideBack: false),
-      body: FormBuilder<Map<String, String>>(
-        entity: const {'email': ''},
+      body: FormBuilder(
+        entity: ForgetPasswordEntity(),
         builder: (context, formKey, entity) {
           return Padding(
             padding: EdgeInsets.all(AppUiConstants.main_screen_padding),
@@ -29,7 +30,7 @@ class ForgotPasswordScreen extends ConsumerWidget {
                 CommonTextField(
                   hintText: 'Email',
                   validationType: ValidationType.validateEmail,
-                  onChanged: (val) => entity['email'] = val,
+                  onChanged: (val) => entity.email = val,
                 ),
                 AppUiConstants.button_spacing.height,
                 CommonButton(

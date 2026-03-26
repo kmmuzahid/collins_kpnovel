@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/src/constants/app_strings.dart';
 import 'package:riverpod_tamplates/src/constants/app_ui_constants.dart';
-import 'package:riverpod_tamplates/src/features/profile/application/profile_notifier.dart';
+import 'package:riverpod_tamplates/src/features/core_features/profile/application/profile_notifier.dart';
 
 @RoutePage()
 class ChangePasswordScreen extends ConsumerWidget {
@@ -46,10 +46,9 @@ class ChangePasswordScreen extends ConsumerWidget {
                   isLoading: profileState.isLoading,
                   onTap: () {
                     if (formKey.currentState?.validate() ?? false) {
-                      ref.read(profileNotifierProvider.notifier).changePassword(
-                        entity['old']!,
-                        entity['new']!,
-                      );
+                      ref
+                          .read(profileNotifierProvider.notifier)
+                          .changePassword(entity['old']!, entity['new']!);
                     }
                   },
                 ),

@@ -12,34 +12,30 @@ dependencies:
     sdk: flutter 
 
   cupertino_icons:
-  # core_kit:
-  #   path: C:/Users/kmmuz/Documents/flutter_project/flutter_core_kit
-
   core_kit:
-    git:
-      url: https://github.com/kmmuzahid/flutter_core_kit.git
-      ref: 1.0.54  # Check releases for latest version
+    path: C:/Users/KmMuzahid/Documents/others/core_kit
 
   flutter_riverpod:
+  riverpod_annotation:
   auto_route:
   flutter_secure_storage: 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  core_kit_lints:
-    path: ../flutter_core_kit/tools/custom_lint
-  flutter_lints: 
 
-  build_runner:
-  auto_route_generator:
-  flutter_gen_runner:   
-    
-  flutter_launcher_icons:  
-  intl_utils:  
-  flutter_auto_size_text:
-  pin_code_fields:
-  change_app_package_name:
+  custom_lint:
+  core_kit_lints:
+    path: C:/Users/KmMuzahid/Documents/others/core_kit/tools/custom_lint
+
+  riverpod_generator:
+  riverpod_lint:
+  build_runner: 
+  auto_route_generator: 
+  flutter_gen_runner:
+  flutter_lints: 
+  flutter_launcher_icons: 
+  change_app_package_name: ^1.5.0 
 
 flutter:
   uses-material-design: true

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/src/constants/app_strings.dart';
 import 'package:riverpod_tamplates/src/constants/app_ui_constants.dart';
-import 'package:riverpod_tamplates/src/features/authentication/application/auth_notifier.dart';
+import 'package:riverpod_tamplates/src/features/core_features/authentication/riverpod/auth_notifier.dart';
 
 @RoutePage()
 class SignupScreen extends ConsumerWidget {
@@ -12,13 +12,11 @@ class SignupScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authState = ref.watch(authNotifierProvider);
+    final authState = ref.watch(authProvider);
+    final authNotifier = ref.read(authProvider.notifier);
 
     return Scaffold(
-      appBar: const CommonAppBar(
-        title: AppStrings.signup_title,
-        hideBack: false,
-      ),
+      appBar: const CommonAppBar(title: AppStrings.signup_title, hideBack: false),
       body: FormBuilder<Map<String, String>>(
         entity: const {'name': '', 'email': '', 'password': ''},
         builder: (context, formKey, entity) {
@@ -49,13 +47,7 @@ class SignupScreen extends ConsumerWidget {
                   isLoading: authState.isLoading,
                   onTap: () {
                     if (formKey.currentState?.validate() ?? false) {
-                      ref
-                          .read(authNotifierProvider.notifier)
-                          .signup(
-                            entity['name']!,
-                            entity['email']!,
-                            entity['password']!,
-                          );
+                      authNotifier.signup(entity['name']!, entity['email']!, entity['password']!);
                     }
                   },
                 ),
