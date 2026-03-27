@@ -1,3 +1,4 @@
+import 'package:core_kit/app_bar/common_app_bar.dart';
 import 'package:core_kit/initializer.dart';
 import 'package:core_kit/network/dio_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,5 +28,13 @@ class CorekitConfigImpl extends CoreKitConfig with CoreKitConfigDefaults {
     accessToken: () async => '',
     refreshToken: () async => '',
     updateTokens: (data) async {},
+  );
+
+  @override
+  // TODO: implement appbarConfig
+  AppbarConfig? get appbarConfig => AppbarConfig(
+    titleAlignment: .centerStart,
+    leadingPadding: const EdgeInsets.only(left: 16, right: 0),
+    titleSpacing: 0,
   );
 }

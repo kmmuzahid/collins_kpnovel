@@ -45,6 +45,7 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.purple700,
     required this.purple800,
     required this.purple900,
+    required this.lightGray,
   });
 
   final Color bgColor;
@@ -89,6 +90,7 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color purple700;
   final Color purple800;
   final Color purple900;
+  final Color lightGray;
 
   // -------------------------------------------------------------------------
   // Light mode factory
@@ -159,6 +161,7 @@ class AppColors extends ThemeExtension<AppColors> {
     purple700: Color(0xFF5E2EB5),
     purple800: Color(0xFF49248C),
     purple900: Color(0xFF371B6B),
+    lightGray: Color(0xFFF7F7F9),
   );
 
   // -------------------------------------------------------------------------
@@ -231,6 +234,7 @@ class AppColors extends ThemeExtension<AppColors> {
     purple700: Color(0xFF5E2EB5),
     purple800: Color(0xFF49248C),
     purple900: Color(0xFF371B6B),
+    lightGray: Color(0xFFF7F7F9),
   );
 
   // -------------------------------------------------------------------------
@@ -278,6 +282,7 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? purple700,
     Color? purple800,
     Color? purple900,
+    Color? lightGray,
   }) {
     return AppColors(
       bgColor: bgColor ?? this.bgColor,
@@ -319,6 +324,7 @@ class AppColors extends ThemeExtension<AppColors> {
       purple700: purple700 ?? this.purple700,
       purple800: purple800 ?? this.purple800,
       purple900: purple900 ?? this.purple900,
+      lightGray: lightGray ?? this.lightGray,
     );
   }
 
@@ -377,6 +383,7 @@ class AppColors extends ThemeExtension<AppColors> {
       purple700: Color.lerp(purple700, other.purple700, t)!,
       purple800: Color.lerp(purple800, other.purple800, t)!,
       purple900: Color.lerp(purple900, other.purple900, t)!,
+      lightGray: Color.lerp(lightGray, other.lightGray, t)!,
     );
   }
 }

@@ -33,4 +33,41 @@ class _AppString {
   get_recommendations_based_on_your_taste_trending_books_new_releases_and_curated_collections_just_for_you =
       'Get recommendations based on your taste. Trending books, new releases, and curated collections just for you.';
   final String next = 'Next';
+
+  //login
+  final String welcome_back = 'Welcome Back!';
+  final String sign_in_to_continue_your_reading_journey =
+      'Sign in to continue your reading journey';
+  final String email = 'Email';
+  final String forgot_password = 'Forgot Password?';
+  final String sign_in = 'Sign In';
+  final String dont_have_an_account = "Don't have an account?";
+  final String sign_up = 'Sign Up';
+
+  //forget pass
+
+  final String forgot_password_title = 'Forgot Password';
+  final String enter_your_email_account_to_reset_your_password =
+      'Enter your email account to reset your password';
+  final String reset_password = 'Reset Password';
+
+  //singup
+
+  final String sign_up_title = 'Sign Up';
+  final String please_fill_the_details_and_create_account =
+      'Please fill the details and create account';
+  final String name = 'Name';
+  final String age = 'Age';
+  final String password = 'Password';
+  final String privacy_policy = 'Privacy Policy';
+  final String terms_and_condition = 'Terms & Condition';
+  final String already_have_an_account = 'Already have an account?';
+
+  //otp
+  final String otp_verification = 'OTP Verification';
+  final String check_your_email_to_see_the_verification_code =
+      'Check your email to see the verification code';
+  final String otp_code = 'OTP code';
+  final String verify = 'Verify';
+  final String resend_code_in = 'Resend code in';
 }

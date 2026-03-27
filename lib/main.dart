@@ -29,7 +29,7 @@ class MyApp extends ConsumerWidget {
     appRouter.init(ref);
     return CoreKit.router(
       scrollBehavior: CustomScrollBehavior(),
-      title: 'Riverpod Template',
+      title: '',
       navigatorKey: appRouter.navigatorKey,
       config: CorekitConfigImpl(),
       debugShowCheckedModeBanner: false,

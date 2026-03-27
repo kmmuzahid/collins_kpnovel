@@ -17,7 +17,7 @@ class OnboardingScreen extends ConsumerStatefulWidget {
 }
 
 class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
-  final int _currentPage = 0;
+  int _currentPage = 0;
   final PageController _pageController = PageController(initialPage: 0);
   final images = [Assets.images.onboarding1, Assets.images.onboarding2, Assets.images.onboarding3];
   List<String> get titles => [
@@ -37,6 +37,16 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     AppString
         .get_recommendations_based_on_your_taste_trending_books_new_releases_and_curated_collections_just_for_you,
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(() {
+      setState(() {
+        _currentPage = _pageController.page!.round();
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,17 +74,22 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                               bottomRight: Radius.circular(30),
                             ),
                           ),
+                          25.height,
                           CommonText(
                             text: titles[index],
                             fontSize: 32,
                             left: Constants.padding,
                             right: Constants.padding,
+                            fontWeight: .w600,
                             textColor: context.color.bodyText,
                           ),
+                          16.height,
                           CommonText(
                             left: Constants.padding,
                             right: Constants.padding,
                             isDescription: true,
+                            fontWeight: .w400,
+                            fontSize: 18,
                             text: descriptions[index],
                           ),
                         ],
@@ -95,22 +110,47 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               },
             ),
           ),
-          CommonButton(
-            titleText: AppString.next,
-            gradient: context.color.ctaGradientBackgroundAccent,
-            onTap: () {
-              if (_currentPage == images.length - 1) {
-                appRouter.replace(const LoginRoute());
-              } else {
-                _pageController.nextPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.ease,
-                );
-              }
-            },
+          _buildPageIndicator(),
+          25.height,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: Constants.padding),
+            child: CommonButton(
+              titleText: AppString.next,
+              suffix: const Icon(Icons.arrow_forward_ios),
+              gradient: context.color.ctaGradientBackgroundAccent,
+              onTap: () {
+                if (_currentPage == images.length - 1) {
+                  appRouter.replace(const LoginRoute());
+                } else {
+                  _pageController.nextPage(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.ease,
+                  );
+                }
+              },
+            ),
           ),
+          100.height
         ],
       ),
+    );
+  }
+
+  //page indicator
+  Widget _buildPageIndicator() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(images.length, (index) {
+        return Container(
+          margin: const EdgeInsets.symmetric(horizontal: 4),
+          width: _currentPage == index ? 24 : 8,
+          height: 8,
+          decoration: BoxDecoration(
+            color: _currentPage == index ? context.color.blue300 : context.color.blue100,
+            borderRadius: BorderRadius.circular(4),
+          ),
+        );
+      }),
     );
   }
 }

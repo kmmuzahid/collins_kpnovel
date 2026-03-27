@@ -33,11 +33,38 @@ class AppTheme {
   );
 
   static ThemeData _themeDataBuilder(ThemeData themeData) {
+    final colors = themeData.extension<AppColors>()!;
     return themeData.copyWith(
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: colors.buttonTextWhite,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(width: 1.5.w),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: colors.cardsInputFields, width: 1.5.w),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: colors.inputBorderFocus, width: 1.5.w),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: colors.errorTextValidation, width: 1.5.w),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: colors.errorTextValidation, width: 1.5.w),
+        ),
+
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      ),
       scaffoldBackgroundColor: Colors.white,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: themeData.extension<AppColors>()?.buttonTextWhite.withValues(alpha: 0.2),
+          backgroundColor: colors.blue300,
           foregroundColor: themeData.colorScheme.onPrimary,
           minimumSize: const Size(double.infinity, 48),
           elevation: 0,
