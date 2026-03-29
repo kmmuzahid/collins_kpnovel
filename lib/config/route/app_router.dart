@@ -1,13 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/config/route/auth_guard.dart';
+import 'package:riverpod_tamplates/src/features/app_features/contest/presentation/contest_screen.dart';
+import 'package:riverpod_tamplates/src/features/app_features/explore/presentation/explore_screen.dart';
+import 'package:riverpod_tamplates/src/features/app_features/home/presentation/home_screen.dart';
+import 'package:riverpod_tamplates/src/features/app_features/library/presentation/library_screen.dart';
+import 'package:riverpod_tamplates/src/features/app_features/read/presentation/read_screen.dart';
 import 'package:riverpod_tamplates/src/features/core_features/authentication/presentation/forgot_password_screen.dart';
 import 'package:riverpod_tamplates/src/features/core_features/authentication/presentation/login_screen.dart';
 import 'package:riverpod_tamplates/src/features/core_features/authentication/presentation/otp_screen.dart';
 import 'package:riverpod_tamplates/src/features/core_features/authentication/presentation/signup_screen.dart';
-import 'package:riverpod_tamplates/src/features/core_features/home/presentation/home_screen.dart';
-import 'package:riverpod_tamplates/src/features/core_features/home/presentation/search_screen.dart';
-import 'package:riverpod_tamplates/src/features/core_features/home/presentation/wishlist_screen.dart';
 import 'package:riverpod_tamplates/src/features/core_features/navigation/presentation/navigation_screen.dart';
 import 'package:riverpod_tamplates/src/features/core_features/onboarding/presentation/onboarding_screen.dart';
 import 'package:riverpod_tamplates/src/features/core_features/presentation/splash_screen.dart';
@@ -44,9 +46,10 @@ class AppRouter extends RootStackRouter {
       guards: [AuthGuard(ref)],
       children: [
         AutoRoute(page: HomeRoute.page),
-        AutoRoute(page: SearchRoute.page),
-        AutoRoute(page: WishlistRoute.page),
-        AutoRoute(page: ProfileRoute.page),
+        AutoRoute(page: ReadRoute.page),
+        AutoRoute(page: ContestRoute.page),
+        AutoRoute(page: LibraryRoute.page),
+        AutoRoute(page: ExploreRoute.page),
       ],
     ),
     AutoRoute(page: EditProfileRoute.page, guards: [AuthGuard(ref)]),
@@ -55,5 +58,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: PrivacyRoute.page),
     AutoRoute(page: FaqRoute.page),
     AutoRoute(page: NotificationRoute.page, guards: [AuthGuard(ref)]),
+    AutoRoute(page: ProfileRoute.page, guards: [AuthGuard(ref)]),
   ];
 }

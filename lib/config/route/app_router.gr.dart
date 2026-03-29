@@ -27,6 +27,22 @@ class ChangePasswordRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ContestScreen]
+class ContestRoute extends PageRouteInfo<void> {
+  const ContestRoute({List<PageRouteInfo>? children})
+    : super(ContestRoute.name, initialChildren: children);
+
+  static const String name = 'ContestRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ContestScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [EditProfileScreen]
 class EditProfileRoute extends PageRouteInfo<void> {
   const EditProfileRoute({List<PageRouteInfo>? children})
@@ -38,6 +54,22 @@ class EditProfileRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const EditProfileScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [ExploreScreen]
+class ExploreRoute extends PageRouteInfo<void> {
+  const ExploreRoute({List<PageRouteInfo>? children})
+    : super(ExploreRoute.name, initialChildren: children);
+
+  static const String name = 'ExploreRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ExploreScreen();
     },
   );
 }
@@ -86,6 +118,22 @@ class HomeRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const HomeScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [LibraryScreen]
+class LibraryRoute extends PageRouteInfo<void> {
+  const LibraryRoute({List<PageRouteInfo>? children})
+    : super(LibraryRoute.name, initialChildren: children);
+
+  static const String name = 'LibraryRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const LibraryScreen();
     },
   );
 }
@@ -203,17 +251,17 @@ class ProfileRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [SearchScreen]
-class SearchRoute extends PageRouteInfo<void> {
-  const SearchRoute({List<PageRouteInfo>? children})
-    : super(SearchRoute.name, initialChildren: children);
+/// [ReadScreen]
+class ReadRoute extends PageRouteInfo<void> {
+  const ReadRoute({List<PageRouteInfo>? children})
+    : super(ReadRoute.name, initialChildren: children);
 
-  static const String name = 'SearchRoute';
+  static const String name = 'ReadRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const SearchScreen();
+      return const ReadScreen();
     },
   );
 }
@@ -262,22 +310,6 @@ class TermsRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const TermsScreen();
-    },
-  );
-}
-
-/// generated route for
-/// [WishlistScreen]
-class WishlistRoute extends PageRouteInfo<void> {
-  const WishlistRoute({List<PageRouteInfo>? children})
-    : super(WishlistRoute.name, initialChildren: children);
-
-  static const String name = 'WishlistRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const WishlistScreen();
     },
   );
 }

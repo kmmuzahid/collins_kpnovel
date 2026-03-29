@@ -12,7 +12,7 @@ class NavigationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
-      routes: const [HomeRoute(), SearchRoute(), WishlistRoute(), ProfileRoute()],
+      routes: const [ReadRoute(), HomeRoute(), ExploreRoute(), ContestRoute(), LibraryRoute()],
       bottomNavigationBuilder: (_, tabsRouter) {
         return MediaQuery.removePadding(
           context: context,

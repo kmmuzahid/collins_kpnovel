@@ -79,6 +79,22 @@ class AppTheme {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(48.r)),
         ),
       ),
+      
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: colors.bgColor,
+        selectedItemColor: colors.blue300,
+        unselectedItemColor: colors.cardsInputFields,
+        selectedLabelStyle: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w700,
+          color: colors.blue300,
+        ),
+        unselectedLabelStyle: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w700,
+          color: colors.cardsInputFields,
+        ),
+      ),
     );
   }
 }
