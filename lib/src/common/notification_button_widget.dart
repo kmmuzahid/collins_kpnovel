@@ -8,9 +8,9 @@ class NotificationButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {},
-      icon: Badge(
+    return GestureDetector(
+      onTap: () {},
+      child: Badge(
         label: const Text('1'),
         child: CommonImage(
           src: Assets.images.notificaiton,

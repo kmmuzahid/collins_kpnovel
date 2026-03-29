@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/config/corekit/corekit_config_impl.dart';
 import 'package:riverpod_tamplates/config/route/app_router.dart';
 import 'package:riverpod_tamplates/config/route/app_router_observer.dart';
+import 'package:riverpod_tamplates/config/route/provider_observer.dart';
 import 'package:riverpod_tamplates/config/theme/app_theme_data.dart';
 class CustomScrollBehavior extends MaterialScrollBehavior {
   @override
@@ -18,7 +19,7 @@ class CustomScrollBehavior extends MaterialScrollBehavior {
 }
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(ProviderScope(observers: [AppProviderObserver()], child: const MyApp()));
 }
 
 class MyApp extends ConsumerWidget {

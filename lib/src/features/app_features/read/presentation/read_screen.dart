@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/config/constance/app_string.dart';
 import 'package:riverpod_tamplates/config/constance/constants.dart';
 import 'package:riverpod_tamplates/config/theme/app_theme_data.dart';
+import 'package:riverpod_tamplates/src/common/setting_icon_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/read/presentation/widgets/action_bar_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/read/presentation/widgets/no_book_selected_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/read/riverpod/read_notifier.dart';
@@ -138,10 +139,7 @@ class ReadScreen extends ConsumerWidget {
                 child: Icon(Icons.list_outlined, color: context.color.buttonTextWhite),
               ),
               10.width,
-              GestureDetector(
-                onTap: () {},
-                child: Icon(Icons.settings_outlined, color: context.color.buttonTextWhite),
-              ),
+              const SettingButtonWidget(),
               16.width,
             ],
           ),

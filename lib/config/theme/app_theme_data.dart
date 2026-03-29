@@ -37,6 +37,7 @@ class AppTheme {
     return themeData.copyWith(
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
+        hintStyle: TextStyle(color: colors.subtext, fontSize: 14, fontStyle: .normal),
         fillColor: colors.buttonTextWhite,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),

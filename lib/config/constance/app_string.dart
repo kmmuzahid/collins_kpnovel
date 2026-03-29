@@ -101,5 +101,13 @@ class _AppString {
   final String rankings_based_on_power_stone_votes = 'Rankings based on Power Stone Votes';
   final String search = 'Search';
   final String top_writers = 'Top Writers';
+  final String top_books = 'Top Books';
+  final String votes = 'votes';
+  final String books_read = 'Books Read';
+  final String edit_profile = 'Edit Profile';
+
+  final String wantToRead = 'Want to Read';
+  final String reading = 'Reading';
+  final String completed = 'Completed';
 }
  
