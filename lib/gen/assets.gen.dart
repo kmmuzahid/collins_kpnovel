@@ -49,10 +49,39 @@ class $AssetsImagesGen {
   ];
 }
 
+class $AssetsNavGen {
+  const $AssetsNavGen();
+
+  /// File path: assets/nav/nav_contest.svg
+  String get navContest => 'assets/nav/nav_contest.svg';
+
+  /// File path: assets/nav/nav_explore.svg
+  String get navExplore => 'assets/nav/nav_explore.svg';
+
+  /// File path: assets/nav/nav_home.svg
+  String get navHome => 'assets/nav/nav_home.svg';
+
+  /// File path: assets/nav/nav_library.svg
+  String get navLibrary => 'assets/nav/nav_library.svg';
+
+  /// File path: assets/nav/nav_read.svg
+  String get navRead => 'assets/nav/nav_read.svg';
+
+  /// List of all assets
+  List<String> get values => [
+    navContest,
+    navExplore,
+    navHome,
+    navLibrary,
+    navRead,
+  ];
+}
+
 class Assets {
   const Assets._();
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsNavGen nav = $AssetsNavGen();
 }
 
 class AssetGenImage {

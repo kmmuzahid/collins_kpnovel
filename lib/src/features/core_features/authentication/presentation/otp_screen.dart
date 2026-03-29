@@ -133,7 +133,7 @@ class OtpScreen extends ConsumerWidget {
               child: Center(
                 child: Text(
                   cells[index].character ?? '',
-                  style: TextStyle(fontSize: 25, color: context.color.lightGray),
+                  style: TextStyle(fontSize: 25, color: context.color.blue400),
                 ),
               ),
             );
