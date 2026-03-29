@@ -93,4 +93,13 @@ class _AppString {
   final String bookmark = 'Bookmark';
   final String comment = 'Comment';
   final String share = 'Share';
+
+  //contest 
+  final String contest = 'Contest';
+  final String writers = 'Writers';
+  final String books = 'Books';
+  final String rankings_based_on_power_stone_votes = 'Rankings based on Power Stone Votes';
+  final String search = 'Search';
+  final String top_writers = 'Top Writers';
 }
+ 

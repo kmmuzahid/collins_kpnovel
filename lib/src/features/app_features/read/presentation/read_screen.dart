@@ -3,6 +3,7 @@ import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/config/constance/app_string.dart';
+import 'package:riverpod_tamplates/config/constance/constants.dart';
 import 'package:riverpod_tamplates/config/theme/app_theme_data.dart';
 import 'package:riverpod_tamplates/src/features/app_features/read/presentation/widgets/action_bar_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/read/presentation/widgets/no_book_selected_widget.dart';
@@ -100,7 +101,14 @@ class ReadScreen extends ConsumerWidget {
       hideBack: true,
       appbarConfig: AppbarConfig(
         titleSpacing: 16,
-        decoration: () => BoxDecoration(gradient: context.color.ctaGradientBackgroundAccent),
+        height: 58.h,
+        decoration: () => BoxDecoration(
+          gradient: context.color.ctaGradientBackgroundAccent,
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(Constants.appbarRadious.r),
+            bottomRight: Radius.circular(Constants.appbarRadious.r),
+          ),
+        ),
       ),
       titleWidget: Column(
         children: [
@@ -143,7 +151,7 @@ class ReadScreen extends ConsumerWidget {
             child: LinearProgressIndicator(
               value: readState.slectedBook?.chapters.length.toDouble() ?? 0,
             ),
-          ),
+          ), 
         ],
       ),
     );

@@ -102,7 +102,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       child: CommonAppBar(
                         disableBack: true,
                         hideBack: true,
-                        appbarConfig: AppbarConfig(backgroundColor: Colors.transparent),
+                        appbarConfig: AppbarConfig(
+                          decoration: () => const BoxDecoration(color: Colors.transparent),
+                        ),
                       ),
                     ),
                   ],

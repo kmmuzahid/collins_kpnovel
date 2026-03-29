@@ -47,6 +47,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold( 
+   
       body: Container(
         decoration: BoxDecoration(gradient: context.color.ctaGradientBackgroundAccent),
         child: Padding(
@@ -57,7 +58,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
               CommonAppBar(
                 disableBack: true,
                 hideBack: true,
-                appbarConfig: AppbarConfig(backgroundColor: Colors.transparent),
+                appbarConfig: AppbarConfig(
+                  decoration: () => const BoxDecoration(color: Colors.transparent),
+                ),
               ),
               const Spacer(),
               CommonImage(

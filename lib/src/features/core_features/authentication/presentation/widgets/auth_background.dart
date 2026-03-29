@@ -9,7 +9,13 @@ class AuthBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(hideBack: hideBack, disableBack: hideBack),
+      appBar: CommonAppBar(
+        hideBack: hideBack,
+        disableBack: hideBack,
+        appbarConfig: AppbarConfig(
+          decoration: () => const BoxDecoration(color: Colors.transparent),
+        ),
+      ),
       body: Stack(
         children: [
           Positioned.fill(
