@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_tamplates/config/constance/app_string.dart';
 import 'package:riverpod_tamplates/config/route/app_router.dart';
-import 'package:riverpod_tamplates/src/constants/app_strings.dart';
 import 'package:riverpod_tamplates/src/features/core_features/authentication/riverpod/auth_notifier.dart';
 
 @RoutePage()
@@ -13,7 +13,7 @@ class ProfileScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: const CommonAppBar(title: AppStringsCore.profile_title, hideBack: true),
+      appBar: CommonAppBar(title: AppString.profile_title, hideBack: true),
       body: ListView(
         children: [
           const UserAccountsDrawerHeader(
@@ -26,12 +26,12 @@ class ProfileScreen extends ConsumerWidget {
           ),
           ListTile(
             leading: const Icon(Icons.edit, color: Colors.blue),
-            title: const CommonText(text: AppStringsCore.edit_profile_title),
+            title: CommonText(text: AppString.edit_profile_title),
             onTap: () => appRouter.push(const EditProfileRoute()),
           ),
           ListTile(
             leading: const Icon(Icons.lock, color: Colors.orange),
-            title: const CommonText(text: AppStringsCore.change_password_title),
+            title: CommonText(text: AppString.change_password_title),
             onTap: () => appRouter.push(const ChangePasswordRoute()),
           ),
           const Divider(),

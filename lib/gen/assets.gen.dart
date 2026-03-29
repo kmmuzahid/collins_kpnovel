@@ -34,17 +34,21 @@ class $AssetsImagesGen {
   AssetGenImage get onboarding4 =>
       const AssetGenImage('assets/images/onboarding_4.jpg');
 
+  /// File path: assets/images/open_book.svg
+  String get openBook => 'assets/images/open_book.svg';
+
   /// File path: assets/images/spalsh_icon.png
   AssetGenImage get spalshIcon =>
       const AssetGenImage('assets/images/spalsh_icon.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [
+  List<dynamic> get values => [
     appIcon,
     onboarding1,
     onboarding2,
     onboarding3,
     onboarding4,
+    openBook,
     spalshIcon,
   ];
 }

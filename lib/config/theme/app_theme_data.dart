@@ -64,6 +64,7 @@ class AppTheme {
       scaffoldBackgroundColor: Colors.white,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           backgroundColor: colors.blue300,
           foregroundColor: themeData.colorScheme.onPrimary,
           minimumSize: const Size(double.infinity, 48),
@@ -95,6 +96,7 @@ class AppTheme {
           color: colors.cardsInputFields,
         ),
       ),
+    
     );
   }
 }

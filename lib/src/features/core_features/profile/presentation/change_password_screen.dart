@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_tamplates/src/constants/app_strings.dart';
+import 'package:riverpod_tamplates/config/constance/app_string.dart';
 import 'package:riverpod_tamplates/src/constants/app_ui_constants.dart';
 import 'package:riverpod_tamplates/src/features/core_features/profile/application/profile_notifier.dart';
 
@@ -15,7 +15,7 @@ class ChangePasswordScreen extends ConsumerWidget {
     final profileState = ref.watch(profileNotifierProvider);
 
     return Scaffold(
-      appBar: const CommonAppBar(title: AppStringsCore.change_password_title),
+      appBar: CommonAppBar(title: AppString.change_password_title),
       body: FormBuilder<Map<String, String>>(
         entity: const {'old': '', 'new': '', 'confirm': ''},
         builder: (context, formKey, entity) {
@@ -42,7 +42,7 @@ class ChangePasswordScreen extends ConsumerWidget {
                 ),
                 AppUiConstants.button_spacing.height,
                 CommonButton(
-                  titleText: AppStringsCore.change_password_title,
+                  titleText: AppString.change_password_title,
                   isLoading: profileState.isLoading,
                   onTap: () {
                     if (formKey.currentState?.validate() ?? false) {

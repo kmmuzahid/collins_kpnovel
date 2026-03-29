@@ -8,7 +8,6 @@ import 'package:riverpod_tamplates/config/route/app_router.dart';
 import 'package:riverpod_tamplates/config/theme/app_theme_data.dart';
 import 'package:riverpod_tamplates/gen/assets.gen.dart';
 import 'package:riverpod_tamplates/src/common/label.dart';
-import 'package:riverpod_tamplates/src/constants/app_strings.dart';
 import 'package:riverpod_tamplates/src/constants/app_ui_constants.dart';
 import 'package:riverpod_tamplates/src/features/core_features/authentication/presentation/widgets/auth_background.dart';
 import 'package:riverpod_tamplates/src/features/core_features/authentication/presentation/widgets/input_card_widget.dart';
@@ -61,7 +60,7 @@ class LoginScreen extends ConsumerWidget {
               CommonButton(
                 buttonColor: context.color.bgColor,
                 titleGradient: context.color.ctaGradientLogo,
-                titleText: AppStringsCore.login_title,
+                titleText: AppString.login_title,
                 isLoading: authState.isLoading,
                 onTap: () {
                   // if (formKey.currentState?.validate() ?? false) {

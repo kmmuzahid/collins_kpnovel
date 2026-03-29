@@ -20,6 +20,7 @@ dependencies:
   auto_route:
   flutter_secure_storage:
   pin_code_fields:
+  equatable:
 
 dev_dependencies:
   flutter_test:

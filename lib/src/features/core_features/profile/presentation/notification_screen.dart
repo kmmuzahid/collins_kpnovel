@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_tamplates/src/constants/app_strings.dart';
+import 'package:riverpod_tamplates/config/constance/app_string.dart';
 
 @RoutePage()
 class NotificationScreen extends ConsumerWidget {
@@ -11,7 +11,7 @@ class NotificationScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: const CommonAppBar(title: AppStringsCore.notifications_title),
+      appBar: CommonAppBar(title: AppString.notifications_title),
       body: SmartListLoader(
         itemCount: 20,
         itemBuilder: (context, index) {

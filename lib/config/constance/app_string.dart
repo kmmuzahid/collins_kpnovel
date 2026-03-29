@@ -4,6 +4,14 @@ _AppString get AppString => _AppString._();
 
 class _AppString {
   _AppString._();
+  //login
+  final String login_title = 'Login';
+  final String signup_title = 'Signup';
+  final String verify_otp_title = 'Verify OTP';
+  final String profile_title = 'Profile';
+  final String edit_profile_title = 'Edit Profile';
+  final String change_password_title = 'Change Password';
+  final String notifications_title = 'Notifications';
   //splash
   final String discover_thousands_of_stories_Read_anywhere_anytime =
       'Discover thousands of stories. Read anywhere, anytime.';
@@ -70,4 +78,19 @@ class _AppString {
   final String otp_code = 'OTP code';
   final String verify = 'Verify';
   final String resend_code_in = 'Resend code in';
+
+  //read screen 
+  final String no_book_selected = 'No Book Selected';
+  final String no_chapter_available_yet = 'No Chapter Available Yet';
+  final String no_chapter_selected = 'No Chapter Selected';
+  final String words = 'words';
+  final String oops_no_content_here = 'Oops! No Content Here.';
+  final String looks_like_this_chapter_is_empty_for_now_lets_find_something_interesting_to_redad =
+      'Looks like this chapter is empty for now. Let’s find something interesting to redad';
+  final String explore_books = 'Explore Books';
+  final String previous = 'Previous';
+  final String listen = 'Listen';
+  final String bookmark = 'Bookmark';
+  final String comment = 'Comment';
+  final String share = 'Share';
 }
