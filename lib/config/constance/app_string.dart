@@ -123,6 +123,52 @@ class _AppString {
   final String search_by_title_author_or_genre = 'Search by title, author, or genre...';
   final String filter = 'Filter';
   final String genre = 'Genre';
+ 
+  final String chapters = 'Chapters';
+  final String status = 'Status';
+  final String power_stones = 'Power Stones';
+  final String start_reading = 'Start Reading';
+  final String vote = 'Vote';
+
+  final String earn_rewards = 'Earn rewards';
+  final String overall_rating = 'Overall Rating';
+  final String based_on = 'Based on';
+  final String reviews = 'reviews';
+  final String write_a_review = 'Write a Review';
+
+  final String write_your_review = 'Write Your Review';
+  final String shadow_of_the_violet_moon = 'Shadow of the Violet Moon';
+  final String your_rating = 'Your Rating';
+  final String your_review = 'Your Review';
+  final String share_your_thoughts_about_this_book = 'Share your thoughts about this book...';
+  final String submit_review = 'Submit Review';
+
+  final String available_power_stones = 'Available Power Stones';
+
+  final String daily_bonus = 'Daily Bonus';
+  final String claim = 'Claim';
+  final String power_stones_5 = '+5 Power Stones';
+
+  final String watch_now = 'Watch Now';
+  final String watch_ads_to_earn = 'Watch ads to earn';
+  final String each = 'each';
+  final String ad = 'Ad';
+  final String today = 'Today';
+  final String watch_ads_for_more = 'Watch Ads for More';
+
+  final String how_to_use_power_stones = 'How to Use Power Stones';
+  final String vote_for_books = 'Vote for Books';
+  final String support_your_favorite_books_and_authors = 'Support your favorite books and authors';
+
+  final String unlock_chapters = 'Unlock Chapters';
+  final String use_power_stones_to_unlock_premium_chapters_and_support_authors =
+      'Use power stones to unlock premium chapters and support authors';
+
+  final String short_bio = 'Short Bio';
+  final String vote_success = 'Vote Success!';
+  final String success = 'Success!';
+  final String you_used = 'You Used ';
+  final String you_earned = 'You earned ';
   
 }
  

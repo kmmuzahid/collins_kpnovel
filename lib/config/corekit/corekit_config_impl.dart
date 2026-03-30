@@ -39,6 +39,7 @@ class CorekitConfigImpl extends CoreKitConfig with CoreKitConfigDefaults {
     titleAlignment: .centerStart,
     backButton: const BackButtonWidget(),
     leadingPadding: const EdgeInsets.only(left: 16, right: 0), 
+    
     decoration: () => BoxDecoration(
       borderRadius: BorderRadius.only(
         bottomLeft: Radius.circular(Constants.appbarRadious.r),
@@ -46,6 +47,6 @@ class CorekitConfigImpl extends CoreKitConfig with CoreKitConfigDefaults {
       ),
       gradient: context.color.ctaGradientBackgroundAccent,
     ),
-    titleSpacing: 0,
+    titleSpacing: 10,
   );
 }

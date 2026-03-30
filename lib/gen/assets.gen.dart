@@ -22,6 +22,9 @@ class $AssetsImagesGen {
   AssetGenImage get emptyBooks =>
       const AssetGenImage('assets/images/empty_books.png');
 
+  /// File path: assets/images/gift_box.svg
+  String get giftBox => 'assets/images/gift_box.svg';
+
   /// File path: assets/images/notificaiton.svg
   String get notificaiton => 'assets/images/notificaiton.svg';
 
@@ -52,6 +55,7 @@ class $AssetsImagesGen {
   List<dynamic> get values => [
     appIcon,
     emptyBooks,
+    giftBox,
     notificaiton,
     onboarding1,
     onboarding2,

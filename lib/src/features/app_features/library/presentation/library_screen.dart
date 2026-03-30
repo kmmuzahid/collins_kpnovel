@@ -7,7 +7,6 @@ import 'package:riverpod_tamplates/config/constance/app_string.dart';
 import 'package:riverpod_tamplates/config/constance/enums.dart';
 import 'package:riverpod_tamplates/config/theme/app_theme_data.dart';
 import 'package:riverpod_tamplates/src/features/app_features/library/presentation/widgets/book_widget.dart';
-import 'package:riverpod_tamplates/src/features/app_features/library/presentation/widgets/library_profile_header.dart';
 import 'package:riverpod_tamplates/src/features/app_features/library/presentation/widgets/no_books_found.dart';
 import 'package:riverpod_tamplates/src/features/app_features/library/riverpod/library_notifire.dart';
 
@@ -17,13 +16,7 @@ class LibraryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CommonAppBar(
-        disableBack: true,
-        hideBack: true,
-        titleWidget: const LibraryProfileHeader(),
-        appbarConfig: AppbarConfig(height: 145.h),
-      ),
+    return Scaffold( 
       body: Consumer(
         builder: (context, ref, _) {
           final selectedLibrary = ref.watch(selectedLibraryProvider);

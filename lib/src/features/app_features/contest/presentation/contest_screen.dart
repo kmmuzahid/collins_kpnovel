@@ -8,7 +8,6 @@ import 'package:riverpod_tamplates/config/constance/constants.dart';
 import 'package:riverpod_tamplates/config/constance/enums.dart';
 import 'package:riverpod_tamplates/config/theme/app_theme_data.dart';
 import 'package:riverpod_tamplates/src/common/app_sigmented_control.dart';
-import 'package:riverpod_tamplates/src/common/notification_button_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/contest/presentation/widget/contest_book_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/contest/presentation/widget/contest_writer_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/contest/riverpod/contest_notifier.dart';
@@ -20,12 +19,7 @@ class ContestScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(
-        disableBack: true,
-        hideBack: true,
-        title: AppString.contest,
-        appbarConfig: AppbarConfig(titleSpacing: 16, actions: [const NotificationButtonWidget()]),
-      ),
+    
       body: Consumer(
         builder: (context, ref, _) {
           final selctedContest = ref.watch(selectedContestProvider);

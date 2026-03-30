@@ -282,6 +282,22 @@ class OtpRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PowerStonesScreen]
+class PowerStonesRoute extends PageRouteInfo<void> {
+  const PowerStonesRoute({List<PageRouteInfo>? children})
+    : super(PowerStonesRoute.name, initialChildren: children);
+
+  static const String name = 'PowerStonesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PowerStonesScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [PrivacyScreen]
 class PrivacyRoute extends PageRouteInfo<void> {
   const PrivacyRoute({List<PageRouteInfo>? children})
@@ -309,6 +325,22 @@ class ProfileRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const ProfileScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [RankingScreen]
+class RankingRoute extends PageRouteInfo<void> {
+  const RankingRoute({List<PageRouteInfo>? children})
+    : super(RankingRoute.name, initialChildren: children);
+
+  static const String name = 'RankingRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const RankingScreen();
     },
   );
 }

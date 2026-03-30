@@ -9,7 +9,7 @@ class ShareIconButton extends StatelessWidget {
       height: 40,
       width: 40,
       decoration: BoxDecoration(
-        color: const Color(0xff563fff),
+        color: const Color(0xff563fff).withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(20),
       ),
       child: const Icon(Icons.share, color: Colors.white),

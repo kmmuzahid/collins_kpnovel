@@ -1,9 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:riverpod_tamplates/config/constance/app_string.dart';
+import 'package:riverpod_tamplates/config/constance/constants.dart';
 import 'package:riverpod_tamplates/config/route/app_router.dart';
 import 'package:riverpod_tamplates/config/theme/app_theme_data.dart';
 import 'package:riverpod_tamplates/gen/assets.gen.dart';
+import 'package:riverpod_tamplates/src/common/notification_button_widget.dart';
+import 'package:riverpod_tamplates/src/features/app_features/explore/presentation/widgets/explore_screen_appbar.dart';
+import 'package:riverpod_tamplates/src/features/app_features/library/presentation/widgets/library_profile_header.dart';
+import 'package:riverpod_tamplates/src/features/app_features/read/presentation/widgets/read_screen_appbar.dart';
 
 @RoutePage()
 class NavigationScreen extends StatelessWidget {
@@ -13,6 +19,52 @@ class NavigationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       routes: const [ReadRoute(), HomeRoute(), ExploreRoute(), ContestRoute(), LibraryRoute()],
+      lazyLoad: false,
+      appBarBuilder: (context, tabsRouter) {
+        if (tabsRouter.activeIndex == 0) {
+          return CommonAppBar(
+            disableBack: true,
+            hideBack: true,
+            appbarConfig: AppbarConfig(
+              titleSpacing: 16,
+              height: 58.h,
+              decoration: () => BoxDecoration(
+                gradient: context.color.ctaGradientBackgroundAccent,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(Constants.appbarRadious.r),
+                  bottomRight: Radius.circular(Constants.appbarRadious.r),
+                ),
+              ),
+            ),
+            titleWidget: const ReadScreenAppBar(),
+          );
+        } else if (tabsRouter.activeIndex == 2) {
+          return CommonAppBar(
+            disableBack: true,
+            hideBack: true,
+            appbarConfig: AppbarConfig(height: 85.h),
+            titleWidget: const ExploreScreenAppbar(),
+          );
+        } else if (tabsRouter.activeIndex == 3) {
+          return CommonAppBar(
+            disableBack: true,
+            hideBack: true,
+            title: AppString.contest,
+            appbarConfig: AppbarConfig(
+              titleSpacing: 16,
+              actions: [const NotificationButtonWidget()],
+            ),
+          );
+        } else if (tabsRouter.activeIndex == 4) {
+          return CommonAppBar(
+            disableBack: true,
+            hideBack: true,
+            titleWidget: const LibraryProfileHeader(),
+            appbarConfig: AppbarConfig(height: 145.h),
+          );
+        }
+        return null;
+      },
       bottomNavigationBuilder: (_, tabsRouter) {
         return MediaQuery.removePadding(
           context: context,

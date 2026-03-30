@@ -2,10 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_tamplates/config/constance/app_string.dart';
-import 'package:riverpod_tamplates/config/constance/constants.dart';
 import 'package:riverpod_tamplates/config/theme/app_theme_data.dart';
-import 'package:riverpod_tamplates/src/common/setting_icon_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/read/presentation/widgets/action_bar_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/read/presentation/widgets/no_book_selected_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/read/riverpod/read_notifier.dart';
@@ -18,8 +15,7 @@ class ReadScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final readState = ref.watch(readProvider);
-    return Scaffold(
-      appBar: _appbarBuilder(context, readState),
+    return Scaffold( 
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
@@ -96,62 +92,4 @@ class ReadScreen extends ConsumerWidget {
     );
   }
 
-  CommonAppBar _appbarBuilder(BuildContext context, ReadState readState) {
-    return CommonAppBar(
-      disableBack: true,
-      hideBack: true,
-      appbarConfig: AppbarConfig(
-        titleSpacing: 16,
-        height: 58.h,
-        decoration: () => BoxDecoration(
-          gradient: context.color.ctaGradientBackgroundAccent,
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(Constants.appbarRadious.r),
-            bottomRight: Radius.circular(Constants.appbarRadious.r),
-          ),
-        ),
-      ),
-      titleWidget: Column(
-        children: [
-          Row(
-            children: [
-              Column(
-                crossAxisAlignment: .start,
-                children: [
-                  CommonText(
-                    text: AppString.no_book_selected,
-                    fontSize: 14,
-                    fontWeight: .w600,
-                    textColor: context.color.buttonTextWhite,
-                  ),
-                  CommonText(
-                    text: AppString.no_chapter_available_yet,
-                    fontSize: 12,
-                    fontWeight: .w400,
-                    textColor: context.color.buttonTextWhite,
-                  ),
-                ],
-              ),
-
-              const Spacer(),
-              GestureDetector(
-                onTap: () {},
-                child: Icon(Icons.list_outlined, color: context.color.buttonTextWhite),
-              ),
-              10.width,
-              const SettingButtonWidget(),
-              16.width,
-            ],
-          ),
-          6.height,
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: LinearProgressIndicator(
-              value: readState.slectedBook?.chapters.length.toDouble() ?? 0,
-            ),
-          ), 
-        ],
-      ),
-    );
-  }
 }

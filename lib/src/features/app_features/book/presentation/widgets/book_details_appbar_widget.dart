@@ -32,7 +32,7 @@ class BookDetailsAppbarWidget extends StatelessWidget {
             children: [
               const CommonImage(
                 src: Constants.sampleImage,
-                height: 90,
+                height: 82,
                 width: 60,
                 borderRadius: 8,
                 borderWidth: 1,

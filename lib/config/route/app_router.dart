@@ -8,6 +8,8 @@ import 'package:riverpod_tamplates/src/features/app_features/explore/presentatio
 import 'package:riverpod_tamplates/src/features/app_features/explore/presentation/explore_screen.dart';
 import 'package:riverpod_tamplates/src/features/app_features/home/presentation/home_screen.dart';
 import 'package:riverpod_tamplates/src/features/app_features/library/presentation/library_screen.dart';
+import 'package:riverpod_tamplates/src/features/app_features/power_stones/presentation/power_stones_screen.dart';
+import 'package:riverpod_tamplates/src/features/app_features/rankings/presentation/ranking_screen.dart';
 import 'package:riverpod_tamplates/src/features/app_features/read/presentation/read_screen.dart';
 import 'package:riverpod_tamplates/src/features/core_features/authentication/presentation/forgot_password_screen.dart';
 import 'package:riverpod_tamplates/src/features/core_features/authentication/presentation/login_screen.dart';
@@ -44,9 +46,11 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: SignupRoute.page),
     AutoRoute(page: ForgotPasswordRoute.page),
     AutoRoute(page: OtpRoute.page),
-    AutoRoute(
+    CustomRoute(
       page: NavigationRoute.page,
       guards: [AuthGuard(ref)],
+      transitionsBuilder: TransitionsBuilders.noTransition,
+      duration: const Duration(milliseconds: 0),
       children: [
         AutoRoute(page: HomeRoute.page),
         AutoRoute(page: ReadRoute.page),
@@ -64,5 +68,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: ProfileRoute.page, guards: [AuthGuard(ref)]),
     AutoRoute(page: ExploreResultRoute.page, guards: [AuthGuard(ref)]),
     AutoRoute(page: BookDetailsRoute.page, guards: [AuthGuard(ref)]),
+    AutoRoute(page: RankingRoute.page, guards: [AuthGuard(ref)]),
+    AutoRoute(page: PowerStonesRoute.page, guards: [AuthGuard(ref)]),
   ];
 }
