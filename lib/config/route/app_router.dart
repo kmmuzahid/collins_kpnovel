@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/config/route/auth_guard.dart';
+import 'package:riverpod_tamplates/src/features/app_features/book/presentation/book_details_screen.dart';
 import 'package:riverpod_tamplates/src/features/app_features/contest/presentation/contest_screen.dart';
+import 'package:riverpod_tamplates/src/features/app_features/explore/presentation/explore_result_screen.dart';
 import 'package:riverpod_tamplates/src/features/app_features/explore/presentation/explore_screen.dart';
 import 'package:riverpod_tamplates/src/features/app_features/home/presentation/home_screen.dart';
 import 'package:riverpod_tamplates/src/features/app_features/library/presentation/library_screen.dart';
@@ -59,5 +62,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: FaqRoute.page),
     AutoRoute(page: NotificationRoute.page, guards: [AuthGuard(ref)]),
     AutoRoute(page: ProfileRoute.page, guards: [AuthGuard(ref)]),
+    AutoRoute(page: ExploreResultRoute.page, guards: [AuthGuard(ref)]),
+    AutoRoute(page: BookDetailsRoute.page, guards: [AuthGuard(ref)]),
   ];
 }

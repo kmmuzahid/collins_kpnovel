@@ -11,6 +11,22 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [BookDetailsScreen]
+class BookDetailsRoute extends PageRouteInfo<void> {
+  const BookDetailsRoute({List<PageRouteInfo>? children})
+    : super(BookDetailsRoute.name, initialChildren: children);
+
+  static const String name = 'BookDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const BookDetailsScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [ChangePasswordScreen]
 class ChangePasswordRoute extends PageRouteInfo<void> {
   const ChangePasswordRoute({List<PageRouteInfo>? children})
@@ -56,6 +72,53 @@ class EditProfileRoute extends PageRouteInfo<void> {
       return const EditProfileScreen();
     },
   );
+}
+
+/// generated route for
+/// [ExploreResultScreen]
+class ExploreResultRoute extends PageRouteInfo<ExploreResultRouteArgs> {
+  ExploreResultRoute({
+    Key? key,
+    required String genre,
+    List<PageRouteInfo>? children,
+  }) : super(
+         ExploreResultRoute.name,
+         args: ExploreResultRouteArgs(key: key, genre: genre),
+         initialChildren: children,
+       );
+
+  static const String name = 'ExploreResultRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ExploreResultRouteArgs>();
+      return ExploreResultScreen(key: args.key, genre: args.genre);
+    },
+  );
+}
+
+class ExploreResultRouteArgs {
+  const ExploreResultRouteArgs({this.key, required this.genre});
+
+  final Key? key;
+
+  final String genre;
+
+  @override
+  String toString() {
+    return 'ExploreResultRouteArgs{key: $key, genre: $genre}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ExploreResultRouteArgs) return false;
+    return key == other.key && genre == other.genre;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ genre.hashCode;
 }
 
 /// generated route for

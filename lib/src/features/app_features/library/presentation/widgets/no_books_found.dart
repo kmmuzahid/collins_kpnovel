@@ -41,7 +41,7 @@ class NoBooksFoundWidget extends StatelessWidget {
           titleText: AppString.explore_books,
           buttonWidth: 80,
           onTap: () {
-            context.router.navigate(const HomeRoute());
+            context.router.navigate(const ExploreRoute());
           },
           buttonColor: context.color.inputBorderFocus,
           borderColor: context.color.inputBorderFocus,

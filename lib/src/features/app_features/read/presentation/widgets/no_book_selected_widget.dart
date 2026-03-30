@@ -55,7 +55,7 @@ class NoBookSelectedWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             gradient: context.color.ctaGradientBackgroundAccent,
             onTap: () {
-              context.router.navigate(const HomeRoute());
+              context.router.navigate(const ExploreRoute());
             },
           ),
         ],

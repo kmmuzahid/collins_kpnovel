@@ -117,5 +117,12 @@ class _AppString {
   final String results = 'Results';
   final String no_books_found = 'No books found';
   final String try_adjusting_your_search_or_filters = 'Try adjusting your search or filters'; 
+  final String browse_by_genre = 'Browse by Genre';
+  final String popular_tags = 'Popular Tags';
+  final String Explore = 'Explore';
+  final String search_by_title_author_or_genre = 'Search by title, author, or genre...';
+  final String filter = 'Filter';
+  final String genre = 'Genre';
+  
 }
  
