@@ -169,6 +169,10 @@ class _AppString {
   final String success = 'Success!';
   final String you_used = 'You Used ';
   final String you_earned = 'You earned ';
+
+  final String continue_reading = 'Continue Reading';
+  String chapter(int number, int total) => 'Chapter $number of $total';
+  final String discover_your_next_story = 'Discover your next story';
   
 }
  

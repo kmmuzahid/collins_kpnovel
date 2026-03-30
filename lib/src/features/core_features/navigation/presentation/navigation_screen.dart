@@ -8,6 +8,7 @@ import 'package:riverpod_tamplates/config/theme/app_theme_data.dart';
 import 'package:riverpod_tamplates/gen/assets.gen.dart';
 import 'package:riverpod_tamplates/src/common/notification_button_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/explore/presentation/widgets/explore_screen_appbar.dart';
+import 'package:riverpod_tamplates/src/features/app_features/home/presentation/widget/home_screen_appbar.dart';
 import 'package:riverpod_tamplates/src/features/app_features/library/presentation/widgets/library_profile_header.dart';
 import 'package:riverpod_tamplates/src/features/app_features/read/presentation/widgets/read_screen_appbar.dart';
 
@@ -37,6 +38,13 @@ class NavigationScreen extends StatelessWidget {
               ),
             ),
             titleWidget: const ReadScreenAppBar(),
+          );
+        } else if (tabsRouter.activeIndex == 1) {
+          return CommonAppBar(
+            disableBack: true,
+            hideBack: true,
+            appbarConfig: AppbarConfig(height: 180.h),
+            titleWidget: const HomeScreenAppBar(),
           );
         } else if (tabsRouter.activeIndex == 2) {
           return CommonAppBar(
