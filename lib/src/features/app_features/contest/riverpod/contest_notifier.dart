@@ -17,40 +17,12 @@ class ContestNotifier extends _$ContestNotifier {
 @riverpod
 class SelectedContest extends _$SelectedContest {
   @override
-  SelectedContestState build() {
-    final booksScrollController = ScrollController();
-    final writersScrollController = ScrollController();
-    ref.onDispose(() {
-      booksScrollController.dispose();
-      writersScrollController.dispose();
-    });
-    return SelectedContestState(
-      contestType: ContestType.Writers,
-      booksScrollController: booksScrollController,
-      writersScrollController: writersScrollController,
-    );
+  ContestType build() {
+    return ContestType.Writers;
   }
 
   void setContest(ContestType value) {
-    state = SelectedContestState(
-      contestType: value,
-      booksScrollController: state.booksScrollController,
-      writersScrollController: state.writersScrollController,
-    );
+    state = value;
   }
 }
 
-class SelectedContestState with EquatableMixin {
-  final ContestType contestType;
-  final ScrollController booksScrollController;
-  final ScrollController writersScrollController;
-
-  SelectedContestState({
-    required this.contestType,
-    required this.booksScrollController,
-    required this.writersScrollController,
-  });
-
-  @override
-  List<Object?> get props => [contestType, booksScrollController, writersScrollController];
-}

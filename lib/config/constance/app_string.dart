@@ -109,5 +109,13 @@ class _AppString {
   final String wantToRead = 'Want to Read';
   final String reading = 'Reading';
   final String completed = 'Completed';
+
+  //books
+  final String my_library = 'My Library';
+  final String hide_profile = 'Hide Profile';
+  final String paused = 'Paused';
+  final String results = 'Results';
+  final String no_books_found = 'No books found';
+  final String try_adjusting_your_search_or_filters = 'Try adjusting your search or filters'; 
 }
  

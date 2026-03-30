@@ -30,11 +30,12 @@ class ContestScreen extends StatelessWidget {
         builder: (context, ref, _) {
           final selctedContest = ref.watch(selectedContestProvider);
 
+
           return SmartTabListLoader(
             padding: const .symmetric(horizontal: Constants.padding),
-            appbar: _header(context, selctedContest.contestType, ref),
-            value: selctedContest.contestType,
-            onColapsAppbar: _onColupse(context, selctedContest.contestType, ref),
+            appbar: _header(context, selctedContest, ref),
+            value: selctedContest,
+            onColapsAppbar: _onColupse(context, selctedContest, ref),
 
             tabs: const [
               SmartTabConfig(tab: ContestType.Writers, itemCount: 10),

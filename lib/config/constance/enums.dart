@@ -16,7 +16,8 @@ enum ContestType {
 enum LibrayType {
   Reading('Reading'),
   Completed('Completed'),
-  WantToRead('Want to Read');
+  WantToRead('Want to Read'),
+  Paused('Paused');
 
   final String title;
 
