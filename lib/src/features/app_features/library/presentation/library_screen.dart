@@ -29,31 +29,37 @@ class LibraryScreen extends StatelessWidget {
         builder: (context, ref, _) {
           final selectedLibrary = ref.watch(selectedLibraryProvider);
           final selectedLibraryNotifier = ref.read(selectedLibraryProvider.notifier);
-          return SmartTabListLoader(
-            appbar: _header(context, selectedLibraryNotifier, selectedLibrary),
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            tabs: const [
-              SmartTabConfig(tab: LibrayType.Reading, itemCount: 20),
-              SmartTabConfig(tab: LibrayType.Completed, itemCount: 0),
-              SmartTabConfig(tab: LibrayType.WantToRead, itemCount: 40),
-              SmartTabConfig(tab: LibrayType.Paused, itemCount: 40),
+          return Column(
+            children: [
+              _header(context, selectedLibraryNotifier, selectedLibrary),
+              Expanded(
+                child: SmartTabListLoader(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  tabs: const [
+                    SmartTabConfig(tab: LibrayType.Reading, itemCount: 20),
+                    SmartTabConfig(tab: LibrayType.Completed, itemCount: 0),
+                    SmartTabConfig(tab: LibrayType.WantToRead, itemCount: 40),
+                    SmartTabConfig(tab: LibrayType.Paused, itemCount: 40),
+                  ],
+                  itemBuilder: (ctx, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        context.router.navigate(const ReadRoute());
+                      },
+                      child: const LibraryItemWidget(),
+                    );
+                  },
+                  value: selectedLibrary,
+                  gridConfig: GridConfig(
+                    itemInRow: 2,
+                    aspectRatio: .68,
+                    mainAxisSpacing: 12,
+                    crossAxisSpacing: 12,
+                  ),
+                  emptyWidget: const NoBooksFoundWidget(),
+                ),
+              ),
             ],
-            itemBuilder: (ctx, index) {
-              return GestureDetector(
-                onTap: () {
-                  context.router.navigate(const ReadRoute());
-                },
-                child: const LibraryItemWidget(),
-              );
-            },
-            value: selectedLibrary,
-            gridConfig: GridConfig(
-              itemInRow: 2,
-              aspectRatio: .68,
-              mainAxisSpacing: 12,
-              crossAxisSpacing: 12,
-            ),
-            emptyWidget: const NoBooksFoundWidget(),
           );
         },
       ),
