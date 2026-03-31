@@ -164,7 +164,7 @@ class _AppString {
   final String use_power_stones_to_unlock_premium_chapters_and_support_authors =
       'Use power stones to unlock premium chapters and support authors';
 
-  final String short_bio = 'Short Bio';
+  final String description = 'Description';
   final String vote_success = 'Vote Success!';
   final String success = 'Success!';
   final String you_used = 'You Used ';

@@ -13,50 +13,76 @@ class LogColor {
 }
 
 class AppRouterObserver extends AutoRouteObserver {
-  /// Converts "HomeRoute" → "HomeScreen.dart"
-  String _screenFileName(Route route) {
-    final name = route.settings.name ?? 'UnknownRoute';
+  String _routeName(Route? route) {
+    return route?.settings.name ?? 'UnknownRoute';
+  }
+
+  String _screenFileName(Route? route) {
+    final name = _routeName(route);
     return '${name.replaceAll("Route", "Screen")}.dart';
   }
 
-  void _log(String message) {
-    // Uses print so it's completely plug-and-play.
-    print(message);
+  String _tabName(TabPageRoute route) {
+    return '${route.name.replaceAll("Route", "Screen")}.dart';
   }
 
+  void _log(String message) {
+    debugPrint(message);
+  }
+
+  /// PUSH
   @override
   void didPush(Route route, Route? previousRoute) {
-    final routeName = route.settings.name ?? 'UnknownRoute';
-    final screen = _screenFileName(route);
-
     _log(
-      '${LogColor.bold}${LogColor.yellow}[📱 SCREEN PUSH]${LogColor.reset} | '
-      '${LogColor.cyan}Route: $routeName${LogColor.reset} | '
-      '${LogColor.magenta}Page: $screen${LogColor.reset}',
+      '${LogColor.bold}${LogColor.green}[PUSH]${LogColor.reset} '
+      '${LogColor.cyan}${_routeName(route)}${LogColor.reset} '
+      '← ${_routeName(previousRoute)}',
     );
   }
 
+  /// POP
   @override
   void didPop(Route route, Route? previousRoute) {
-    final routeName = route.settings.name ?? 'UnknownRoute';
-    final screen = _screenFileName(route);
-
     _log(
-      '${LogColor.bold}${LogColor.yellow}[⬅️  SCREEN POP]${LogColor.reset} | '
-      '${LogColor.cyan}Route: $routeName${LogColor.reset} | '
-      '${LogColor.magenta}Page: $screen${LogColor.reset}',
+      '${LogColor.bold}${LogColor.yellow}[POP]${LogColor.reset} '
+      '${LogColor.cyan}${_routeName(route)}${LogColor.reset} '
+      '→ ${_routeName(previousRoute)}',
+    );
+  }
+
+  /// REPLACE
+  @override
+  void didReplace({Route? newRoute, Route? oldRoute}) {
+    _log(
+      '${LogColor.bold}${LogColor.magenta}[REPLACE]${LogColor.reset} '
+      '${LogColor.red}${_routeName(oldRoute)}${LogColor.reset} '
+      '→ ${LogColor.green}${_routeName(newRoute)}${LogColor.reset}',
+    );
+  }
+
+  /// REMOVE (important for navigate cleanup)
+  @override
+  void didRemove(Route route, Route? previousRoute) {
+    _log(
+      '${LogColor.bold}${LogColor.red}[REMOVE]${LogColor.reset} '
+      '${_routeName(route)}',
+    );
+  }
+
+  /// TAB / NESTED ROUTE SWITCH
+  @override
+  void didInitTabRoute(TabPageRoute route, TabPageRoute? previousRoute) {
+    _log(
+      '${LogColor.bold}${LogColor.blue}[TAB INIT]${LogColor.reset} '
+      '${LogColor.green}${_tabName(route)}${LogColor.reset}',
     );
   }
 
   @override
-  void didReplace({Route? newRoute, Route? oldRoute}) {
-    final oldName = oldRoute?.settings.name ?? 'UnknownRoute';
-    final newName = newRoute?.settings.name ?? 'UnknownRoute';
-
+  void didChangeTabRoute(TabPageRoute route, TabPageRoute previousRoute) {
     _log(
-      '${LogColor.bold}${LogColor.yellow}[🔁 SCREEN REPLACE]${LogColor.reset} | '
-      '${LogColor.red}OLD: $oldName${LogColor.reset} | '
-      '${LogColor.green}NEW: $newName${LogColor.reset}',
+      '${LogColor.bold}${LogColor.blue}[TAB CHANGE]${LogColor.reset} '
+      '${LogColor.red}${_tabName(previousRoute)}${LogColor.reset} → ${LogColor.green}${_tabName(route)}${LogColor.reset}',
     );
   }
 }

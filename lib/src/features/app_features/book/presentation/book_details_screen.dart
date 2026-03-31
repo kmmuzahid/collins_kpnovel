@@ -92,7 +92,7 @@ class BookDetailsScreen extends StatelessWidget {
           prefix: const Icon(Icons.electric_bolt_outlined, color: Colors.white, size: 20),
         ),
         10.height,
-        HeadlineWidget(title: AppString.short_bio).start,
+        HeadlineWidget(title: AppString.description).start,
         Container(
           padding: const EdgeInsets.all(16.0),
           decoration: BoxDecoration(
