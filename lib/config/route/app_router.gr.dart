@@ -362,6 +362,89 @@ class ReadRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ShowMoreBooksScreen]
+class ShowMoreBooksRoute extends PageRouteInfo<ShowMoreBooksRouteArgs> {
+  ShowMoreBooksRoute({
+    Key? key,
+    required String title,
+    bool isNew = false,
+    bool isTrending = false,
+    required bool isListType,
+    List<PageRouteInfo>? children,
+  }) : super(
+         ShowMoreBooksRoute.name,
+         args: ShowMoreBooksRouteArgs(
+           key: key,
+           title: title,
+           isNew: isNew,
+           isTrending: isTrending,
+           isListType: isListType,
+         ),
+         initialChildren: children,
+       );
+
+  static const String name = 'ShowMoreBooksRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ShowMoreBooksRouteArgs>();
+      return ShowMoreBooksScreen(
+        key: args.key,
+        title: args.title,
+        isNew: args.isNew,
+        isTrending: args.isTrending,
+        isListType: args.isListType,
+      );
+    },
+  );
+}
+
+class ShowMoreBooksRouteArgs {
+  const ShowMoreBooksRouteArgs({
+    this.key,
+    required this.title,
+    this.isNew = false,
+    this.isTrending = false,
+    required this.isListType,
+  });
+
+  final Key? key;
+
+  final String title;
+
+  final bool isNew;
+
+  final bool isTrending;
+
+  final bool isListType;
+
+  @override
+  String toString() {
+    return 'ShowMoreBooksRouteArgs{key: $key, title: $title, isNew: $isNew, isTrending: $isTrending, isListType: $isListType}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ShowMoreBooksRouteArgs) return false;
+    return key == other.key &&
+        title == other.title &&
+        isNew == other.isNew &&
+        isTrending == other.isTrending &&
+        isListType == other.isListType;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^
+      title.hashCode ^
+      isNew.hashCode ^
+      isTrending.hashCode ^
+      isListType.hashCode;
+}
+
+/// generated route for
 /// [SignupScreen]
 class SignupRoute extends PageRouteInfo<void> {
   const SignupRoute({List<PageRouteInfo>? children})

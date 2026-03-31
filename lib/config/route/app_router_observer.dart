@@ -14,7 +14,8 @@ class LogColor {
 
 class AppRouterObserver extends AutoRouteObserver {
   String _routeName(Route? route) {
-    return route?.settings.name ?? 'UnknownRoute';
+    final value = route?.settings.name ?? 'UnknownRoute';
+    return '${value.replaceAll("Route", "Screen")}.dart';
   }
 
   String _screenFileName(Route? route) {

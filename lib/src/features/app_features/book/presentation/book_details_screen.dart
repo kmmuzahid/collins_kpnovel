@@ -6,6 +6,7 @@ import 'package:riverpod_tamplates/config/constance/headline_widget.dart';
 import 'package:riverpod_tamplates/config/route/app_router.dart';
 import 'package:riverpod_tamplates/config/theme/app_theme_data.dart';
 import 'package:riverpod_tamplates/src/features/app_features/book/presentation/widgets/book_details_appbar_widget.dart';
+import 'package:riverpod_tamplates/src/features/app_features/book/presentation/widgets/power_stones_button_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/book/presentation/widgets/ratting_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/book/presentation/widgets/success_vote_dailog_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/book/presentation/widgets/user_review_card_widget.dart';
@@ -62,7 +63,7 @@ class BookDetailsScreen extends StatelessWidget {
         ),
         10.height,
 
-        _powerStones(context),
+        const PowerStonesButtonWidget(),
         15.height,
         CommonButton(
           titleText: AppString.start_reading,
@@ -139,51 +140,5 @@ class BookDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _powerStones(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        context.router.push(const PowerStonesRoute());
-      },
-      child: Container(
-        padding: const EdgeInsets.all(16.0),
-        decoration: BoxDecoration(
-          color: const Color(0xffe89100),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Row(
-          children: [
-            Container(
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                color: const Color(0xffeda733),
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: const Icon(Icons.electric_bolt_outlined, color: Colors.white),
-            ),
-            10.width,
-            Expanded(
-              child: Column(
-                crossAxisAlignment: .start,
-                children: [
-                  CommonText(
-                    text: AppString.power_stones,
-                    fontSize: 18,
-                    textColor: context.color.buttonTextWhite,
-                    fontWeight: .bold,
-                  ),
-                  CommonText(
-                    text: AppString.earn_rewards,
-                    fontSize: 14,
-                    fontWeight: .w500,
-                    textColor: context.color.buttonTextWhite,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+
 }

@@ -173,6 +173,21 @@ class _AppString {
   final String continue_reading = 'Continue Reading';
   String chapter(int number, int total) => 'Chapter $number of $total';
   final String discover_your_next_story = 'Discover your next story';
-  
+
+  final String trending_now = 'Trending Now';
+  final String new_releases = 'New Releases';
+  final String recommended_for_you = 'Recommended For You';
+  final String show_more = 'Show more';
+  final String New = 'New';
+  final String Trending = 'Trending';
+  final String Rankings = 'Rankings';
+  final String Short_Stories = 'Short Stories';
+  final String Daily_Weekly_Monthly = 'Daily • Weekly • Monthly';
+  final String Quick_reads = 'Quick reads';
+  final String Daily = 'Daily';
+  final String Weekly = 'Weekly';
+  final String Monthly = 'Monthly';
+  final String Rankings_based_on = 'Rankings based on';
+  final String Power_Stone_Votes = 'Power Stone Votes';
 }
  

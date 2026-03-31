@@ -50,6 +50,15 @@ class $AssetsImagesGen {
   /// File path: assets/images/open_book.svg
   String get openBook => 'assets/images/open_book.svg';
 
+  /// File path: assets/images/rank_1.svg
+  String get rank1 => 'assets/images/rank_1.svg';
+
+  /// File path: assets/images/rank_2.svg
+  String get rank2 => 'assets/images/rank_2.svg';
+
+  /// File path: assets/images/rank_3.svg
+  String get rank3 => 'assets/images/rank_3.svg';
+
   /// File path: assets/images/spalsh_icon.png
   AssetGenImage get spalshIcon =>
       const AssetGenImage('assets/images/spalsh_icon.png');
@@ -66,6 +75,9 @@ class $AssetsImagesGen {
     onboarding3,
     onboarding4,
     openBook,
+    rank1,
+    rank2,
+    rank3,
     spalshIcon,
   ];
 }

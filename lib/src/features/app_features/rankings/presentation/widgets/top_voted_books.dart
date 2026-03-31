@@ -1,4 +1,7 @@
+import 'package:core_kit/core_kit_internal.dart';
 import 'package:flutter/material.dart';
+import 'package:riverpod_tamplates/config/constance/constants.dart';
+import 'package:riverpod_tamplates/gen/assets.gen.dart';
 
 class TopVotedBooks extends StatelessWidget {
   const TopVotedBooks({super.key});
@@ -93,22 +96,20 @@ class BookRankCard extends StatelessWidget {
       child: isHorizontal ? _buildHorizontal() : _buildVertical(),
     );
   }
-
-  // --- CHAMPION LAYOUT ---
+ 
   Widget _buildHorizontal() {
     return Row(
       children: [
         _buildImageWithBadge(80, 110),
-        const SizedBox(width: 16),
+        const SizedBox(width: 16), 
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildRankBadge(),
-              const SizedBox(height: 8),
+              _buildRankBadge(), 
               Text(title, style: _titleStyle(20)),
-              Text(author, style: _authorStyle()),
-              const SizedBox(height: 12),
+              Text(author, style: _authorStyle()), 
+              6.height,
               _buildVoteChip(),
             ],
           ),
@@ -116,52 +117,56 @@ class BookRankCard extends StatelessWidget {
       ],
     );
   }
-
-  // --- SILVER/BRONZE LAYOUT ---
+ 
   Widget _buildVertical() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildImageWithBadge(double.infinity, 140),
-        const SizedBox(height: 12),
-        _buildRankBadge(),
-        const SizedBox(height: 8),
-        Text(title, maxLines: 1, overflow: TextOverflow.ellipsis, style: _titleStyle(16)),
-        Text(author, style: _authorStyle()),
-        const SizedBox(height: 12),
-        _buildVoteChip(),
+        4.height,
+        _buildRankBadge(), 
+        CommonText(
+          text: title,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          autoResize: false,
+          style: _titleStyle(16),
+        ),
+        CommonText(text: author, style: _authorStyle()),
+        4.height,
+        _buildVoteChip(width: double.infinity),
       ],
     );
   }
-
-  // Common UI Elements
+ 
   Widget _buildImageWithBadge(double width, double height) {
+
+    var rankImage = '';
+    if (rank == 1) {
+      rankImage = Assets.images.rank1;
+    } else if (rank == 2) {
+      rankImage = Assets.images.rank2;
+    } else if (rank == 3) {
+      rankImage = Assets.images.rank3;
+    }
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        Container(
+        CommonImage(
+          src: Constants.sampleImage,
           width: width,
           height: height,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: Colors.white, width: 2),
-            image: const DecorationImage(
-              image: NetworkImage('https://via.placeholder.com/150'),
-              fit: BoxFit.cover,
-            ),
-          ),
+          borderRadius: 16,
+          borderWidth: 3,
+          borderColor: Colors.white,
         ),
         Positioned(
-          top: -8,
-          right: -8,
+          top: -4,
+          right: -4,
           child: CircleAvatar(
             radius: 18,
             backgroundColor: Colors.white,
-            child: Icon(
-              rank == 1 ? Icons.emoji_events : Icons.military_tech,
-              color: baseColor,
-              size: 20,
-            ),
+            child: CommonImage(src: rankImage, size: 20),
           ),
         ),
       ],
@@ -173,29 +178,30 @@ class BookRankCard extends StatelessWidget {
       children: [
         Text(
           '$rank',
-          style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+          style: const TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(width: 8),
+        4.width,
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.3),
+            color: Colors.white.withValues(alpha: .3),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Text(
             rankLabel,
-            style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+            style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
           ),
         ),
       ],
     );
   }
 
-  Widget _buildVoteChip() {
+  Widget _buildVoteChip({double? width}) {
     return Container(
+      width: width,
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.15),
+        color: Colors.white.withValues(alpha: .1),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
@@ -213,5 +219,5 @@ class BookRankCard extends StatelessWidget {
 
   TextStyle _titleStyle(double size) =>
       TextStyle(color: Colors.white, fontSize: size, fontWeight: FontWeight.bold);
-  TextStyle _authorStyle() => TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 13);
+  TextStyle _authorStyle() => TextStyle(color: Colors.white.withValues(alpha: .9), fontSize: 14);
 }

@@ -1,12 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:core_kit/core_kit_internal.dart';
 import 'package:flutter/material.dart';
+import 'package:riverpod_tamplates/config/constance/app_string.dart';
 import 'package:riverpod_tamplates/config/constance/constants.dart';
 import 'package:riverpod_tamplates/config/route/app_router.dart';
 import 'package:riverpod_tamplates/config/theme/app_theme_data.dart';
 
 class BookWidget extends StatelessWidget {
-  const BookWidget({super.key});
+  const BookWidget({super.key, this.isTrending = false, this.isNew = true});
+
+  final bool isTrending;
+  final bool isNew;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +53,8 @@ class BookWidget extends StatelessWidget {
                           child: CommonImage(src: Constants.sampleImage),
                         ),
                       ),
-                      Positioned(top: 12, right: 12, child: _buildNewBadge()),
+                      if (isNew || isTrending)
+                        Positioned(top: 12, right: 12, child: _buildNewBadge(context)),
                     ],
                   ),
                 ),
@@ -123,21 +128,29 @@ class BookWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildNewBadge() {
+  Widget _buildNewBadge(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFD700),
+        color: isNew ? const Color(0xFFFFD700) : null,
+        gradient: isTrending ? context.color.ctaGradientBackgroundAccent : null,
         borderRadius: BorderRadius.circular(20),
       ),
-      child: const Row(
+      child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.auto_awesome, size: 14, color: Color(0xFF5E35B1)),
-          SizedBox(width: 4),
+          Icon(
+            isNew ? Icons.auto_awesome : Icons.trending_up_outlined,
+            size: 14,
+            color: isNew ? const Color(0xFF5E35B1) : Colors.white,
+          ),
+          const SizedBox(width: 4),
           Text(
-            'New',
-            style: TextStyle(color: Color(0xFF5E35B1), fontWeight: FontWeight.bold),
+            isNew ? AppString.New : AppString.Trending,
+            style: TextStyle(
+              color: isNew ? const Color(0xFF5E35B1) : Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),

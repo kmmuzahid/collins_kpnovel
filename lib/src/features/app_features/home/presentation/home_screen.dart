@@ -3,6 +3,14 @@ import 'package:core_kit/text/common_text.dart';
 import 'package:core_kit/utils/core_screen_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_tamplates/config/constance/app_string.dart';
+import 'package:riverpod_tamplates/config/constance/constants.dart';
+import 'package:riverpod_tamplates/config/constance/headline_widget.dart';
+import 'package:riverpod_tamplates/config/route/app_router.dart';
+import 'package:riverpod_tamplates/config/theme/app_theme_data.dart';
+import 'package:riverpod_tamplates/src/features/app_features/book/presentation/widgets/power_stones_button_widget.dart';
+import 'package:riverpod_tamplates/src/features/app_features/home/presentation/widget/books_feed_card_widget.dart';
+import 'package:riverpod_tamplates/src/features/app_features/library/presentation/widgets/book_widget.dart';
 
 @RoutePage()
 class HomeScreen extends ConsumerWidget {
@@ -10,64 +18,182 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      children: [
-        Row(
+    final itemSizeInrow = (CoreScreenUtils.deviceSize.width - 32) / 2.0;
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: Constants.padding),
+      child: Column(
+        children: [
+          10.height,
+          Row(
+            children: [
+              Expanded(
+                child: topMenu(
+                  context: context,
+                  icon: Icons.emoji_events_outlined,
+                  title: AppString.Rankings,
+                  subTitle: AppString.Daily_Weekly_Monthly,
+                  onTap: () {
+                    context.router.push(const RankingRoute());
+                  },
+                  color: Colors.amber,
+                  background: const Color(0xFFfffcee),
+                ),
+              ),
+              16.width,
+              Expanded(
+                child: topMenu(
+                  context: context,
+                  icon: Icons.menu_book_outlined,
+                  title: AppString.Short_Stories,
+                  subTitle: AppString.Quick_reads,
+                  onTap: () {},
+                  color: Colors.green,
+                  background: const Color(0xFFe9fffc),
+                ),
+              ),
+            ],
+          ),
+
+          10.height,
+
+          const PowerStonesButtonWidget(),
+
+          10.height,
+
+          _headline('🔥 ${AppString.trending_now}', () {
+            context.router.push(
+              ShowMoreBooksRoute(
+                title: AppString.trending_now,
+                isNew: false,
+                isTrending: true,
+                isListType: false,
+              ),
+            );
+          }, context),
+          10.height,
+          _trendingBooks(itemSizeInrow),
+          10.height,
+          _headline('✨ ${AppString.new_releases}', () {
+            context.router.push(
+              ShowMoreBooksRoute(
+                title: AppString.new_releases,
+                isNew: true,
+                isTrending: false,
+                isListType: true,
+              ),
+            );
+          }, context),
+          10.height,
+          ...List.generate(2, (index) => const BookFeedCardWidget()),
+          10.height,
+          _headline('💜 ${AppString.recommended_for_you}', () {
+            context.router.push(
+              ShowMoreBooksRoute(
+                title: AppString.recommended_for_you,
+                isNew: true,
+                isTrending: false,
+                isListType: false,
+              ),
+            );
+          }, context),
+          10.height,
+          _recommendedBooks(itemSizeInrow),
+          30.height,
+        ],
+      ),
+    );
+  }
+
+  SizedBox _recommendedBooks(double itemSizeInrow) {
+    return SizedBox(
+      height: itemSizeInrow * 1.45,
+      child: SingleChildScrollView(
+        scrollDirection: .horizontal,
+        child: Row(
           children: [
-            Expanded(
-              child: topMenu(
-                context,
-                Icons.book,
-                'Library',
-                'Manage your books',
-                () {},
-                Colors.amber,
-              ),
-            ),
-            16.width,
-            Expanded(
-              child: topMenu(
-                context,
-                Icons.book,
-                'Library',
-                'Manage your books',
-                () {},
-                Colors.green,
-              ),
-            ),
+            SizedBox(width: itemSizeInrow, child: const BookWidget()),
+            10.width,
+            SizedBox(width: itemSizeInrow, child: const BookWidget()),
+            10.width,
+            SizedBox(width: itemSizeInrow, child: const BookWidget()),
+            10.width,
+            SizedBox(width: itemSizeInrow, child: const BookWidget()),
           ],
+        ),
+      ),
+    );
+  }
+
+  SizedBox _trendingBooks(double itemSizeInrow) {
+    return SizedBox(
+      height: itemSizeInrow * 1.45,
+      child: SingleChildScrollView(
+        scrollDirection: .horizontal,
+        child: Row(
+          children: [
+            SizedBox(width: itemSizeInrow, child: const BookWidget(isNew: false, isTrending: true)),
+            10.width,
+            SizedBox(width: itemSizeInrow, child: const BookWidget(isNew: false, isTrending: true)),
+            10.width,
+            SizedBox(width: itemSizeInrow, child: const BookWidget(isNew: false, isTrending: true)),
+            10.width,
+            SizedBox(width: itemSizeInrow, child: const BookWidget(isNew: false, isTrending: true),
+                ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _headline(String title, VoidCallback onTap, BuildContext context) {
+    return Row(
+      children: [
+        HeadlineWidget(title: title),
+        const Spacer(),
+        GestureDetector(
+          onTap: onTap,
+          child: CommonText(
+            text: AppString.show_more,
+            suffix: Icon(Icons.arrow_forward_ios, size: 14, color: context.color.ctaButtonsText),
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+            textColor: context.color.ctaButtonsText,
+          ),
         ),
       ],
     );
   }
 
   Widget topMenu(
-    BuildContext context,
-    IconData icon,
-    String title,
-    String subTitle,
-    VoidCallback onTap,
-    Color color,
+    {
+    required BuildContext context,
+    required IconData icon,
+    required String title,
+    required String subTitle,
+    required VoidCallback onTap,
+    required Color color,
+    required Color background,
+  }
   ) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.3),
+          color: background,
           borderRadius: BorderRadius.circular(12.r),
         ),
         child: Column(
           children: [
-            Icon(icon, color: Colors.white, size: 24),
+            Icon(icon, color: color, size: 32),
             16.width,
             CommonText(
               text: title,
-              textColor: Colors.white,
+              textColor: context.color.bodyText,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
-            CommonText(text: subTitle, textColor: Colors.white60, fontSize: 12),
+            CommonText(text: subTitle, textColor: context.color.subtext, fontSize: 12), 
           ],
         ),
       ),

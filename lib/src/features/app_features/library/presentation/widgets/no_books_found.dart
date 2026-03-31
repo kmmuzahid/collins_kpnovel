@@ -40,6 +40,7 @@ class NoBooksFoundWidget extends StatelessWidget {
         CommonButton(
           titleText: AppString.explore_books,
           buttonWidth: 80,
+          gradient: context.color.ctaGradientBackgroundAccent,
           onTap: () {
             context.router.navigate(const ExploreRoute());
           },

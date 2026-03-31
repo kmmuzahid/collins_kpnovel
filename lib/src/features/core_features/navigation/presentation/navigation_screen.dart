@@ -28,7 +28,7 @@ class NavigationScreen extends StatelessWidget {
             hideBack: true,
             appbarConfig: AppbarConfig(
               titleSpacing: 16,
-              height: 58.h,
+              height: 58,
               decoration: () => BoxDecoration(
                 gradient: context.color.ctaGradientBackgroundAccent,
                 borderRadius: BorderRadius.only(
@@ -43,14 +43,14 @@ class NavigationScreen extends StatelessWidget {
           return CommonAppBar(
             disableBack: true,
             hideBack: true,
-            appbarConfig: AppbarConfig(height: 180.h),
+            appbarConfig: AppbarConfig(height: 187),
             titleWidget: const HomeScreenAppBar(),
           );
         } else if (tabsRouter.activeIndex == 2) {
           return CommonAppBar(
             disableBack: true,
             hideBack: true,
-            appbarConfig: AppbarConfig(height: 85.h),
+            appbarConfig: AppbarConfig(height: 87),
             titleWidget: const ExploreScreenAppbar(),
           );
         } else if (tabsRouter.activeIndex == 3) {
@@ -68,7 +68,7 @@ class NavigationScreen extends StatelessWidget {
             disableBack: true,
             hideBack: true,
             titleWidget: const LibraryProfileHeader(),
-            appbarConfig: AppbarConfig(height: 145.h),
+            appbarConfig: AppbarConfig(height: 147),
           );
         }
         return null;
