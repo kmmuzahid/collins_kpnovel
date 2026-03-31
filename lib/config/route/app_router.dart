@@ -12,6 +12,7 @@ import 'package:riverpod_tamplates/src/features/app_features/library/presentatio
 import 'package:riverpod_tamplates/src/features/app_features/power_stones/presentation/power_stones_screen.dart';
 import 'package:riverpod_tamplates/src/features/app_features/rankings/presentation/ranking_screen.dart';
 import 'package:riverpod_tamplates/src/features/app_features/read/presentation/read_screen.dart';
+import 'package:riverpod_tamplates/src/features/app_features/story/presentation/story_screen.dart';
 import 'package:riverpod_tamplates/src/features/core_features/authentication/presentation/forgot_password_screen.dart';
 import 'package:riverpod_tamplates/src/features/core_features/authentication/presentation/login_screen.dart';
 import 'package:riverpod_tamplates/src/features/core_features/authentication/presentation/otp_screen.dart';
@@ -72,5 +73,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: RankingRoute.page, guards: [AuthGuard(ref)]),
     AutoRoute(page: PowerStonesRoute.page, guards: [AuthGuard(ref)]),
     AutoRoute(page: ShowMoreBooksRoute.page, guards: [AuthGuard(ref)]),
+    AutoRoute(page: StoryRoute.page, guards: [AuthGuard(ref)]),
   ];
 }

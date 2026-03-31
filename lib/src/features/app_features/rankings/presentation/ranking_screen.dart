@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/config/constance/app_string.dart';
 import 'package:riverpod_tamplates/config/constance/constants.dart';
+import 'package:riverpod_tamplates/config/constance/headline_widget.dart';
 import 'package:riverpod_tamplates/config/corekit/back_button.dart';
 import 'package:riverpod_tamplates/config/theme/app_theme_data.dart';
+import 'package:riverpod_tamplates/src/features/app_features/rankings/presentation/widgets/general_rank_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/rankings/presentation/widgets/ranking_filter_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/rankings/presentation/widgets/top_voted_books.dart';
 
@@ -25,16 +27,30 @@ class RankingScreen extends ConsumerWidget {
       body: SmartListLoader(
         itemCount: 30,
         padding: const EdgeInsets.symmetric(horizontal: Constants.padding),
-        topWidget: Container(
-          margin: EdgeInsets.only(top: 10.h),
-          decoration: BoxDecoration(
-            color: const Color(0xfffaf5ff),
-            borderRadius: BorderRadius.all(Radius.circular(24.r)),
-          ),
-          child: const TopVotedBooks(),
+        topWidget: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 10.h),
+              decoration: BoxDecoration(
+                color: const Color(0xfffaf5ff),
+                borderRadius: BorderRadius.all(Radius.circular(24.r)),
+              ),
+              child: const TopVotedBooks(),
+            ),
+            10.height,
+            HeadlineWidget(title: AppString.Book_List).start,
+          ],
         ),
         itemBuilder: (context, index) {
-          return Container();
+          return GeneralRankWidget(
+            rank: index + 1,
+            title: 'Book Title',
+            author: 'Author Name',
+            rating: 4.5,
+            views: '1.2M',
+            tags: const ['Fantasy', 'Romance'],
+            imageUrl: Constants.sampleImage,
+          );
         },
       ),
     );
@@ -48,6 +64,7 @@ class RankingScreen extends ConsumerWidget {
           Row(
             children: [
               const BackButtonWidget(),
+              8.width,
               CommonText(
                 text: AppString.Rankings,
                 style: Theme.of(context).appBarTheme.titleTextStyle,

@@ -13,10 +13,10 @@ class BackButtonWidget extends StatelessWidget {
       child: Container(
         height: 40,
         width: 40,
-        padding: const EdgeInsets.only(left: 8),
+        padding: const EdgeInsets.only(left: 10),
         decoration: BoxDecoration(
-          color: const Color(0xff563fff).withValues(alpha: 0.3),
-          borderRadius: BorderRadius.circular(20),
+          color: Colors.white.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(40),
         ),
         child: const Icon(Icons.arrow_back_ios, color: Colors.white),
       ),

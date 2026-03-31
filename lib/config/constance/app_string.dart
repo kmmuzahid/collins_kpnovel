@@ -189,5 +189,6 @@ class _AppString {
   final String Monthly = 'Monthly';
   final String Rankings_based_on = 'Rankings based on';
   final String Power_Stone_Votes = 'Power Stone Votes';
+  final String Book_List = 'Book List';
 }
  

@@ -477,6 +477,22 @@ class SplashRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [StoryScreen]
+class StoryRoute extends PageRouteInfo<void> {
+  const StoryRoute({List<PageRouteInfo>? children})
+    : super(StoryRoute.name, initialChildren: children);
+
+  static const String name = 'StoryRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const StoryScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [TermsScreen]
 class TermsRoute extends PageRouteInfo<void> {
   const TermsRoute({List<PageRouteInfo>? children})

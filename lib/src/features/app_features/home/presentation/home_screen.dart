@@ -46,7 +46,9 @@ class HomeScreen extends ConsumerWidget {
                   icon: Icons.menu_book_outlined,
                   title: AppString.Short_Stories,
                   subTitle: AppString.Quick_reads,
-                  onTap: () {},
+                  onTap: () {
+                    context.router.push(const StoryRoute());
+                  },
                   color: Colors.green,
                   background: const Color(0xFFe9fffc),
                 ),
@@ -137,8 +139,7 @@ class HomeScreen extends ConsumerWidget {
             10.width,
             SizedBox(width: itemSizeInrow, child: const BookWidget(isNew: false, isTrending: true)),
             10.width,
-            SizedBox(width: itemSizeInrow, child: const BookWidget(isNew: false, isTrending: true),
-                ),
+            SizedBox(width: itemSizeInrow, child: const BookWidget(isNew: false, isTrending: true)),
           ],
         ),
       ),
@@ -164,8 +165,7 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 
-  Widget topMenu(
-    {
+  Widget topMenu({
     required BuildContext context,
     required IconData icon,
     required String title,
@@ -173,16 +173,12 @@ class HomeScreen extends ConsumerWidget {
     required VoidCallback onTap,
     required Color color,
     required Color background,
-  }
-  ) {
+  }) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-        decoration: BoxDecoration(
-          color: background,
-          borderRadius: BorderRadius.circular(12.r),
-        ),
+        decoration: BoxDecoration(color: background, borderRadius: BorderRadius.circular(12.r)),
         child: Column(
           children: [
             Icon(icon, color: color, size: 32),
@@ -193,7 +189,7 @@ class HomeScreen extends ConsumerWidget {
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
-            CommonText(text: subTitle, textColor: context.color.subtext, fontSize: 12), 
+            CommonText(text: subTitle, textColor: context.color.subtext, fontSize: 12),
           ],
         ),
       ),
