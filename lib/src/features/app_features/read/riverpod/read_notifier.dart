@@ -11,6 +11,10 @@ class ReadNotifier extends _$ReadNotifier {
     return const ReadState();
   }
 
+  void toggleAudioPlaying() {
+    state = state.copyWith(isAudioPlaying: !state.isAudioPlaying);
+  }
+
   void selectBook() {
     state = state.copyWith(
       slectedBook: BookModel(

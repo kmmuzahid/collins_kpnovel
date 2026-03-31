@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/config/constance/app_string.dart';
+import 'package:riverpod_tamplates/src/features/app_features/read/presentation/widgets/book_mark_modal_widget.dart';
+import 'package:riverpod_tamplates/src/features/app_features/read/riverpod/read_notifier.dart';
 
-class ActionBarWidget extends StatelessWidget {
+class ActionBarWidget extends ConsumerWidget {
   final Color backgroundColor;
   final Color iconColor;
   final Color textColor;
+  final bool isBookSelected;
   const ActionBarWidget({
     super.key,
     required this.backgroundColor,
     required this.iconColor,
     required this.textColor,
+    this.isBookSelected = false,
   });
+  
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       decoration: BoxDecoration(
@@ -23,18 +29,49 @@ class ActionBarWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildActionItem(Icons.volume_up_outlined, AppString.listen, iconColor, textColor),
-          _buildActionItem(Icons.bookmark_add_outlined, AppString.bookmark, iconColor, textColor),
-          _buildActionItem(Icons.chat_bubble_outline, AppString.comment, iconColor, textColor),
-          _buildActionItem(Icons.share_outlined, AppString.share, iconColor, textColor),
+          _buildActionItem(Icons.volume_up_outlined, AppString.listen, iconColor, textColor, () {
+            if (isBookSelected) {
+              ref.read(readProvider.notifier).toggleAudioPlaying();
+            }
+          }),
+          _buildActionItem(
+            Icons.bookmark_add_outlined,
+            AppString.bookmark,
+            iconColor,
+            textColor,
+            () {
+              if (isBookSelected) {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return const BookmarkModalWidget();
+                  },
+                );
+              }
+            },
+          ),
+          _buildActionItem(
+            Icons.chat_bubble_outline,
+            AppString.comment,
+            iconColor,
+            textColor,
+            () {},
+          ),
+          _buildActionItem(Icons.share_outlined, AppString.share, iconColor, textColor, () {}),
         ],
       ),
     );
   }
 
-  Widget _buildActionItem(IconData icon, String label, Color iconColor, Color textColor) {
+  Widget _buildActionItem(
+    IconData icon,
+    String label,
+    Color iconColor,
+    Color textColor,
+    VoidCallback onTap,
+  ) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

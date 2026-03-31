@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/config/constance/app_string.dart';
 import 'package:riverpod_tamplates/config/constance/headline_widget.dart';
 import 'package:riverpod_tamplates/config/route/app_router.dart';
@@ -10,13 +11,14 @@ import 'package:riverpod_tamplates/src/features/app_features/book/presentation/w
 import 'package:riverpod_tamplates/src/features/app_features/book/presentation/widgets/ratting_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/book/presentation/widgets/success_vote_dailog_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/book/presentation/widgets/user_review_card_widget.dart';
+import 'package:riverpod_tamplates/src/features/app_features/read/riverpod/read_notifier.dart';
 
 @RoutePage()
-class BookDetailsScreen extends StatelessWidget {
+class BookDetailsScreen extends ConsumerWidget {
   const BookDetailsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: CommonAppBar(
         disableBack: true,
@@ -27,7 +29,7 @@ class BookDetailsScreen extends StatelessWidget {
       body: SmartListLoader(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         itemCount: 30,
-        topWidget: _topWidget(context),
+        topWidget: _topWidget(context, ref),
         itemBuilder: (context, index) {
           return const UserReviewCardWidget();
         },
@@ -35,7 +37,7 @@ class BookDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _topWidget(BuildContext context) {
+  Widget _topWidget(BuildContext context, WidgetRef ref) {
     return Column(
       children: [
         10.height,
@@ -70,6 +72,7 @@ class BookDetailsScreen extends StatelessWidget {
           gradient: context.color.ctaGradientBackgroundAccent,
           prefix: const Icon(Icons.play_arrow_outlined, color: Colors.white, size: 30),
           onTap: () {
+            ref.read(readProvider.notifier).selectBook();
             context.router.popUntil((route) => route.settings.name == NavigationRoute.name);
             context.router.navigate(const ReadRoute());
           },
@@ -139,6 +142,4 @@ class BookDetailsScreen extends StatelessWidget {
       ),
     );
   }
-
-
 }

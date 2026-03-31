@@ -189,6 +189,11 @@ class _AppString {
   final String Monthly = 'Monthly';
   final String Rankings_based_on = 'Rankings based on';
   final String Power_Stone_Votes = 'Power Stone Votes';
-  final String Book_List = 'Book List';
+  final String Book_List = 'Book List'; 
+  final String Quick_reads_for_your_busy_day = 'Quick reads for your busy day';
+  final String Want_to_Read = 'Want to Read';
+  final String Favorites = 'Favorites';
+  final String Done = 'Done';
+  final String Audio_Narration = 'Audio Narration';
 }
  

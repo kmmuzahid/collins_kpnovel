@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/config/constance/app_string.dart';
 import 'package:riverpod_tamplates/config/theme/app_theme_data.dart';
-import 'package:riverpod_tamplates/src/common/setting_icon_widget.dart';
+import 'package:riverpod_tamplates/src/features/app_features/read/presentation/widgets/reading_setting_modal.dart';
 import 'package:riverpod_tamplates/src/features/app_features/read/riverpod/read_notifier.dart';
 
 class ReadScreenAppBar extends StatelessWidget {
@@ -15,6 +15,7 @@ class ReadScreenAppBar extends StatelessWidget {
     return Consumer(
       builder: (context, ref, _) {
         final readState = ref.watch(readProvider);
+        final isBookSelected = readState.slectedBook != null;
         return Column(
           children: [
             Row(
@@ -40,18 +41,36 @@ class ReadScreenAppBar extends StatelessWidget {
                 const Spacer(),
                 GestureDetector(
                   onTap: () {},
-                  child: Icon(Icons.list_outlined, color: context.color.buttonTextWhite),
+                  child: Icon(
+                    Icons.list_outlined,
+                    size: 30,
+                    color: isBookSelected ? context.color.buttonTextWhite : context.color.iconClr,
+                  ),
                 ),
                 10.width,
-                const SettingButtonWidget(),
+                GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return const ReadingSettingsModal();
+                      },
+                    );
+                  },
+                  child: Icon(
+                    Icons.tune_sharp,
+                    size: 20,
+                    color: isBookSelected ? context.color.buttonTextWhite : context.color.iconClr,
+                  ),
+                ),
                 16.width,
               ],
             ),
             6.height,
-            Padding(
-              padding: const EdgeInsets.only(right: 16),
+            const Padding(
+              padding: EdgeInsets.only(right: 16),
               child: LinearProgressIndicator(
-                value: readState.slectedBook?.chapters.length.toDouble() ?? 0,
+                value: .5, color: Colors.amber,
               ),
             ),
           ],

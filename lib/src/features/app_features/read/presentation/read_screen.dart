@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/config/theme/app_theme_data.dart';
 import 'package:riverpod_tamplates/src/features/app_features/read/presentation/widgets/action_bar_widget.dart';
+import 'package:riverpod_tamplates/src/features/app_features/read/presentation/widgets/book_audio_reader_widget.dart';
+import 'package:riverpod_tamplates/src/features/app_features/read/presentation/widgets/book_reading_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/read/presentation/widgets/no_book_selected_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/read/riverpod/read_notifier.dart';
 import 'package:riverpod_tamplates/src/features/app_features/read/riverpod/read_state.dart';
@@ -18,15 +20,32 @@ class ReadScreen extends ConsumerWidget {
     return Scaffold( 
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
+        child: Stack(
           children: [
-            10.height,
-            const Expanded(child: NoBookSelectedWidget()),
-            10.height,
-            _buttons(context, readState),
-            16.height,
-            _actionBar(readState, context),
-            5.height,
+            Positioned.fill(
+              child: Column(
+                mainAxisSize: .min,
+                children: [
+                  10.height,
+                  if (readState.slectedBook == null)
+                  const Expanded(child: NoBookSelectedWidget()),
+                  if (readState.slectedBook != null) const Expanded(child: BookReadingWidget()),
+              
+                  10.height,
+                  _buttons(context, readState),
+                  16.height,
+                  _actionBar(readState, context),
+                  5.height,
+                ],
+              ),
+            ),
+            if (readState.isAudioPlaying)
+              Positioned(
+                bottom: 100.h,
+                left: 16,
+                right: 16,
+                child: const SizedBox(height: 300, child: BookAudioReaderWidget()),
+              ),
           ],
         ),
       ),
@@ -36,8 +55,8 @@ class ReadScreen extends ConsumerWidget {
   ActionBarWidget _actionBar(ReadState readState, BuildContext context) {
     final isBookSelected = readState.slectedBook != null;
     final backgroundColor = isBookSelected
-        ? context.color.inputBorderFocus.withValues(alpha: 0.5)
-        : context.color.lightGray.withValues(alpha: 0.5);
+        ? context.color.inputBorderFocus.withValues(alpha: 0.1)
+        : context.color.lightGray.withValues(alpha: 0.35);
     final iconColor = isBookSelected
         ? context.color.inputBorderFocus
         : context.color.subtext.withValues(alpha: 0.6);
@@ -46,6 +65,7 @@ class ReadScreen extends ConsumerWidget {
       backgroundColor: backgroundColor,
       iconColor: iconColor,
       textColor: iconColor,
+      isBookSelected: isBookSelected,
     );
   }
 
