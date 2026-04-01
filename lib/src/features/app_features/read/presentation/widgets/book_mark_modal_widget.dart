@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:riverpod_tamplates/config/constance/app_string.dart';
 
 class BookmarkModalWidget extends StatefulWidget {
-  const BookmarkModalWidget({super.key});
+  const BookmarkModalWidget({super.key, required this.scrollController});
+  final ScrollController scrollController;
 
   @override
   State<BookmarkModalWidget> createState() => _BookmarkModalWidgetState();
@@ -19,11 +20,9 @@ class _BookmarkModalWidgetState extends State<BookmarkModalWidget> {
         color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // 1. Drag Handle
+      child: ListView(
+        controller: widget.scrollController,
+        children: [ 
           Center(
             child: Container(
               width: 40,

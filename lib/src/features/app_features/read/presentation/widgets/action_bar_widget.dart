@@ -1,7 +1,9 @@
+import 'package:core_kit/utils/core_screen_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tamplates/config/constance/app_string.dart';
 import 'package:riverpod_tamplates/src/features/app_features/read/presentation/widgets/book_mark_modal_widget.dart';
+import 'package:riverpod_tamplates/src/features/app_features/read/presentation/widgets/comment_widget.dart';
 import 'package:riverpod_tamplates/src/features/app_features/read/riverpod/read_notifier.dart';
 
 class ActionBarWidget extends ConsumerWidget {
@@ -42,9 +44,19 @@ class ActionBarWidget extends ConsumerWidget {
             () {
               if (isBookSelected) {
                 showModalBottomSheet(
+                  useSafeArea: true,
+                  isScrollControlled: true,
                   context: context,
                   builder: (context) {
-                    return const BookmarkModalWidget();
+                    return DraggableScrollableSheet(
+                      initialChildSize: 0.45.h,
+                      minChildSize: 0.3.h,
+                      maxChildSize: 0.95,
+                      expand: false,
+                      builder: (context, scrollController) {
+                        return BookmarkModalWidget(scrollController: scrollController);
+                      },
+                    );
                   },
                 );
               }
@@ -55,7 +67,26 @@ class ActionBarWidget extends ConsumerWidget {
             AppString.comment,
             iconColor,
             textColor,
-            () {},
+            () {
+            if (isBookSelected) {
+              showModalBottomSheet(
+                useSafeArea: true,
+                isScrollControlled: true,
+                context: context,
+                builder: (context) {
+                  return DraggableScrollableSheet(
+                    initialChildSize: 0.45.h,
+                    minChildSize: 0.3.h,
+                    maxChildSize: 0.95,
+                    expand: false,
+                    builder: (context, scrollController) {
+                      return CommentSection(scrollController: scrollController);
+                    },
+                  );
+                },
+              );
+            }
+          },
           ),
           _buildActionItem(Icons.share_outlined, AppString.share, iconColor, textColor, () {}),
         ],

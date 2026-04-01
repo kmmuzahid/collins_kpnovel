@@ -52,8 +52,18 @@ class ReadScreenAppBar extends StatelessWidget {
                   onTap: () {
                     showModalBottomSheet(
                       context: context,
+                      useSafeArea: true,
+                      isScrollControlled: true,
                       builder: (context) {
-                        return const ReadingSettingsModal();
+                        return DraggableScrollableSheet(
+                          initialChildSize: 0.6,
+                          minChildSize: 0.4,
+                          maxChildSize: .95,
+                          expand: false,
+                          builder: (context, scrollController) {
+                            return ReadingSettingsModal(controller: scrollController);
+                          },
+                        );
                       },
                     );
                   },

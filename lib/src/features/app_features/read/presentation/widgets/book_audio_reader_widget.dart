@@ -106,9 +106,19 @@ class BookAudioReaderWidget extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     const Icon(Icons.volume_up_outlined, color: Colors.grey),
-                    const SizedBox(
+                    SizedBox(
                       width: 100,
-                      child: LinearProgressIndicator(value: .5, color: Color(0xFF6236FF)),
+                      child: SliderTheme(
+                        data: SliderThemeData(
+                          trackHeight: 2,
+                          thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
+                          overlayShape: const RoundSliderOverlayShape(overlayRadius: 12),
+                          activeTrackColor: const Color(0xFF6236FF),
+                          inactiveTrackColor: Colors.grey.shade200,
+                          thumbColor: const Color(0xFF6236FF),
+                        ),
+                        child: Slider(value: 0.4, onChanged: (v) {}),
+                      ),
                     ),
                     const Icon(Icons.skip_previous_rounded, size: 32),
                     Container(

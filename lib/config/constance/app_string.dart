@@ -195,5 +195,16 @@ class _AppString {
   final String Favorites = 'Favorites';
   final String Done = 'Done';
   final String Audio_Narration = 'Audio Narration';
+  final String Reading_Settings = 'Reading Settings';
+  final String Font_Size = 'Font Size';
+  final String Line_Spacing = 'Line Spacing';
+  final String Background_Mode = 'Background Mode';
+  final String White = 'White';
+  final String Dark = 'Dark';
+  final String Sepia = 'Sepia';
+  final String Eye_Comfort = 'Eye Comfort';
+  final String Comments = 'Comments';
+  final String discussions = 'discussions';
+  final String comments_require_admin_approval = 'Comments require admin approval';
 }
  

@@ -1,8 +1,11 @@
+import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:riverpod_tamplates/config/constance/app_string.dart';
+import 'package:riverpod_tamplates/config/theme/app_theme_data.dart';
 
 class ReadingSettingsModal extends StatefulWidget {
-  const ReadingSettingsModal({super.key});
-
+  const ReadingSettingsModal({super.key, required this.controller});
+  final ScrollController controller;
   @override
   State<ReadingSettingsModal> createState() => _ReadingSettingsModalState();
 }
@@ -10,19 +13,18 @@ class ReadingSettingsModal extends StatefulWidget {
 class _ReadingSettingsModalState extends State<ReadingSettingsModal> {
   double fontSize = 16.0;
   double lineSpacing = 1.8;
-  String selectedMode = 'White';
+  int selectedMode = 0;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12), 
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
+        controller: widget.controller,
         children: [
           // Drag Handle
           Center(
@@ -36,32 +38,27 @@ class _ReadingSettingsModalState extends State<ReadingSettingsModal> {
             ),
           ),
           const SizedBox(height: 24),
-          const Text(
-            'Reading Settings',
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 32),
-
-          // Font Size Slider
-          _buildSliderRow('Font Size', '${fontSize.toInt()}px', fontSize, 12, 30, (val) {
+          CommonText(text: AppString.Reading_Settings, fontSize: 22, fontWeight: FontWeight.bold), 
+ 
+          _buildSliderRow(AppString.Font_Size, '${fontSize.toInt()}px', fontSize, 12, 30, (val) {
             setState(() => fontSize = val);
-          }),
-          const SizedBox(height: 24),
-
-          // Line Spacing Slider
-          _buildSliderRow('Line Spacing', lineSpacing.toStringAsFixed(1), lineSpacing, 1.0, 3.0, (
+          }), 
+ 
+          _buildSliderRow(
+            AppString.Line_Spacing,
+            lineSpacing.toStringAsFixed(1),
+            lineSpacing,
+            1.0,
+            3.0,
+            (
             val,
           ) {
             setState(() => lineSpacing = val);
-          }),
-          const SizedBox(height: 32),
-
-          // Background Mode Grid
-          const Text(
-            'Background Mode',
-            style: TextStyle(fontSize: 16, color: Color(0xFF9EA7B5), fontWeight: FontWeight.w500),
-          ),
-          const SizedBox(height: 16),
+            },
+          ), 
+ 
+          CommonText(text: AppString.Background_Mode, fontSize: 16, fontWeight: FontWeight.w500),
+          10.height,
           GridView.count(
             shrinkWrap: true,
             crossAxisCount: 2,
@@ -70,38 +67,42 @@ class _ReadingSettingsModalState extends State<ReadingSettingsModal> {
             crossAxisSpacing: 12,
             physics: const NeverScrollableScrollPhysics(),
             children: [
-              _buildModeOption('White', Icons.wb_sunny_outlined, const Color(0xFFF8F9FF)),
               _buildModeOption(
-                'Dark',
+                AppString.White,
+                0,
+                Icons.wb_sunny_outlined,
+                const Color(0xFFF8F9FF),
+              ),
+              _buildModeOption(
+                AppString.Dark,
+                1,
                 Icons.nightlight_round_outlined,
                 const Color(0xFF2D2D2D),
                 isDark: true,
               ),
-              _buildModeOption('Sepia', Icons.text_fields_rounded, const Color(0xFFF4ECD8)),
-              _buildModeOption('Eye Comfort', Icons.auto_awesome_outlined, const Color(0xFFE8F5E9)),
+              _buildModeOption(
+                AppString.Sepia,
+                2,
+                Icons.text_fields_rounded,
+                const Color(0xFFF4ECD8),
+              ),
+              _buildModeOption(
+                AppString.Eye_Comfort,
+                3,
+                Icons.auto_awesome_outlined,
+                const Color(0xFFE8F5E9),
+              ),
             ],
           ),
-          const SizedBox(height: 40),
+          10.height,
 
-          // Done Button
-          SizedBox(
-            width: double.infinity,
-            height: 56,
-            child: ElevatedButton(
-              onPressed: () => Navigator.pop(context),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF6236FF),
-                foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
-                elevation: 0,
-              ),
-              child: const Text(
-                'Done',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-          const SizedBox(height: 16),
+          CommonButton(
+            titleText: AppString.Done,
+            gradient: context.color.ctaGradientBackgroundAccent,
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ), 
         ],
       ),
     );
@@ -138,10 +139,16 @@ class _ReadingSettingsModalState extends State<ReadingSettingsModal> {
     );
   }
 
-  Widget _buildModeOption(String label, IconData icon, Color previewColor, {bool isDark = false}) {
-    final isSelected = selectedMode == label;
+  Widget _buildModeOption(
+    String label,
+    int index,
+    IconData icon,
+    Color previewColor, {
+    bool isDark = false,
+  }) {
+    final isSelected = selectedMode == index;
     return GestureDetector(
-      onTap: () => setState(() => selectedMode = label),
+      onTap: () => setState(() => selectedMode = index),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
