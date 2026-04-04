@@ -1,62 +1,247 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:core_kit/core_kit.dart';
+import 'package:core_kit/core_kit_internal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_tamplates/config/constance/app_string.dart';
 import 'package:riverpod_tamplates/config/route/app_router.dart';
-import 'package:riverpod_tamplates/src/features/core_features/authentication/riverpod/auth_notifier.dart';
 
 @RoutePage()
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context, _) {
     return Scaffold(
-      appBar: CommonAppBar(title: AppString.profile_title, hideBack: true),
-      body: ListView(
-        children: [
-          const UserAccountsDrawerHeader(
-            accountName: CommonText(text: 'John Doe', textColor: Colors.white),
-            accountEmail: CommonText(text: 'john.doe@example.com', textColor: Colors.white70),
-            currentAccountPicture: CircleAvatar(
-              backgroundImage: NetworkImage('https://via.placeholder.com/150'),
-            ),
-            decoration: BoxDecoration(color: Colors.blue),
+      appBar: const CommonAppBar(title: 'Setting'),
+      backgroundColor: const Color(0xFFF5F6F8), // Light grey background
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 40),
+
+              // --- Account Section ---
+              _buildSectionTitle('Account'),
+              _buildSettingsCard(
+                child: _buildListTile(
+                  icon: Icons.lock_outline,
+                  title: 'Change Password',
+                  onTap: () {
+                    appRouter.push(const ChangePasswordRoute());
+                  },
+                ),
+              ),
+
+              const SizedBox(height: 25),
+
+              // --- Preferences Section ---
+              _buildSectionTitle('Preferences'),
+              _buildSettingsCard(
+                child: ListTile(
+                  leading: _buildIconContainer(
+                    Icons.notifications_none,
+                    Colors.purple.shade50,
+                    Colors.purple,
+                  ),
+                  title: const Text(
+                    'Notificastions',
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  subtitle: const Text(
+                    'Push notifications and alerts',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  trailing: Switch(
+                    value: true,
+                    onChanged: (val) {},
+                    activeColor: Colors.white,
+                    activeTrackColor: Colors.purple,
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 25),
+
+              // --- Support Section ---
+              _buildSectionTitle('Support'),
+              _buildSettingsCard(
+                child: Column(
+                  children: [
+                    _buildListTile(
+                      icon: Icons.info_outline,
+                      title: 'Terms & conditions',
+                      onTap: () {
+                        appRouter.push(const TermsRoute());
+                      },
+                    ),
+                    const Divider(height: 1, indent: 70),
+                    _buildListTile(
+                      icon: Icons.info_outline,
+                      title: 'Privacy Policy',
+                      onTap: () {
+                        appRouter.push(const PrivacyRoute());
+                      },
+                    ),
+                    const Divider(height: 1, indent: 70),
+                    _buildListTile(
+                      icon: Icons.info_outline,
+                      title: 'About Us',
+                      onTap: () {},
+                    ),
+                    const Divider(height: 1, indent: 70),
+                    _buildListTile(
+                      icon: Icons.description_outlined,
+                      title: "FAQ's",
+                      onTap: () {
+                        appRouter.push(const FaqRoute());
+                      },
+                    ),
+                  ],
+                ),
+              ),
+
+              const Spacer(),
+
+              // --- Buttons ---
+              _buildOutlineButton(
+                label: 'Sign Out',
+                icon: Icons.logout,
+                color: Colors.redAccent,
+                onPressed: () {
+                  appRouter.replaceAll([const LoginRoute()]);
+                },
+              ),
+              const SizedBox(height: 15),
+              _buildOutlineButton(
+                label: 'Delete Account',
+                icon: Icons.delete_outline,
+                color: Colors.redAccent,
+                onPressed: () {},
+              ),
+
+              const SizedBox(height: 40),
+
+              // --- Footer ---
+              Center(
+                child: Column(
+                  children: [
+                    Text(
+                      '© 2026 Rinik Tech Company Limited.',
+                      style: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontSize: 12,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      'Version 1.0.0 (Build 100)',
+                      style: TextStyle(
+                        color: Colors.grey.shade500,
+                        fontSize: 11,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+            ],
           ),
-          ListTile(
-            leading: const Icon(Icons.edit, color: Colors.blue),
-            title: CommonText(text: AppString.edit_profile_title),
-            onTap: () => appRouter.push(const EditProfileRoute()),
-          ),
-          ListTile(
-            leading: const Icon(Icons.lock, color: Colors.orange),
-            title: CommonText(text: AppString.change_password_title),
-            onTap: () => appRouter.push(const ChangePasswordRoute()),
-          ),
-          const Divider(),
-          ListTile(
-            leading: const Icon(Icons.description, color: Colors.grey),
-            title: const CommonText(text: 'Terms & Conditions'),
-            onTap: () => appRouter.push(const TermsRoute()),
-          ),
-          ListTile(
-            leading: const Icon(Icons.privacy_tip, color: Colors.grey),
-            title: const CommonText(text: 'Privacy Policy'),
-            onTap: () => appRouter.push(const PrivacyRoute()),
-          ),
-          ListTile(
-            leading: const Icon(Icons.help, color: Colors.grey),
-            title: const CommonText(text: 'FAQ'),
-            onTap: () => appRouter.push(const FaqRoute()),
-          ),
-          const Divider(),
-          ListTile(
-            leading: const Icon(Icons.logout, color: Colors.red),
-            title: const CommonText(text: 'Logout', textColor: Colors.red),
-            onTap: () => ref.read(authProvider.notifier).logout(),
+        ),
+      ),
+    );
+  }
+
+  // Helper to build section titles
+  Widget _buildSectionTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 4, bottom: 12),
+      child: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: Color(0xFF4A4E69),
+        ),
+      ),
+    );
+  }
+
+  // Helper for the rounded white containers with shadow
+  Widget _buildSettingsCard({required Widget child}) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
           ),
         ],
+      ),
+      child: child,
+    );
+  }
+
+  // Helper for standard list items
+  Widget _buildListTile({
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+  }) {
+    return ListTile(
+      leading: _buildIconContainer(icon, Colors.purple.shade50, Colors.purple),
+      title: Text(title, style: const TextStyle(fontWeight: FontWeight.w500)),
+      trailing: const Icon(
+        Icons.arrow_forward_ios,
+        size: 16,
+        color: Colors.grey,
+      ),
+      onTap: onTap,
+    );
+  }
+
+  // Helper for the stylized icons
+  Widget _buildIconContainer(IconData icon, Color bgColor, Color iconColor) {
+    return Container(
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: bgColor,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Icon(icon, color: iconColor, size: 22),
+    );
+  }
+
+  // Helper for the red outline buttons
+  Widget _buildOutlineButton({
+    required String label,
+    required IconData icon,
+    required Color color,
+    required VoidCallback onPressed,
+  }) {
+    return SizedBox(
+      width: double.infinity,
+      height: 50,
+      child: OutlinedButton.icon(
+        onPressed: onPressed,
+        icon: Icon(icon, color: color),
+        label: Text(
+          label,
+          style: TextStyle(
+            color: color,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+        ),
+        style: OutlinedButton.styleFrom(
+          side: BorderSide(color: color.withOpacity(0.5)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ),
       ),
     );
   }

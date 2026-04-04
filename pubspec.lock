@@ -260,9 +260,11 @@ packages:
   core_kit:
     dependency: "direct main"
     description:
-      path: "C:/Users/KmMuzahid/Documents/others/core_kit"
-      relative: false
-    source: path
+      path: "."
+      ref: "1.0.67"
+      resolved-ref: "88425ed847d3f3939ca4bfa54c707a1a0719f05a"
+      url: "https://github.com/kmmuzahid/flutter_core_kit.git"
+    source: git
     version: "0.0.1"
   coverage:
     dependency: transitive

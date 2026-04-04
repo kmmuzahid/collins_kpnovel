@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:riverpod_tamplates/config/route/app_router.dart';
 import 'package:riverpod_tamplates/config/theme/app_theme_data.dart';
 
 class SettingButtonWidget extends StatelessWidget {
@@ -7,8 +9,13 @@ class SettingButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
-      child: Icon(Icons.settings_outlined, color: context.color.buttonTextWhite),
+      onTap: () {
+        context.router.push(const ProfileRoute());
+      },
+      child: Icon(
+        Icons.settings_outlined,
+        color: context.color.buttonTextWhite,
+      ),
     );
   }
 }

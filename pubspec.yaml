@@ -1,6 +1,6 @@
 name: riverpod_tamplates
 description: "A new Flutter project."
-publish_to: 'none' 
+publish_to: "none"
 
 version: 1.0.0+1
 
@@ -9,11 +9,13 @@ environment:
 
 dependencies:
   flutter:
-    sdk: flutter 
+    sdk: flutter
 
   cupertino_icons:
   core_kit:
-    path: C:/Users/KmMuzahid/Documents/others/core_kit
+    git:
+      url: https://github.com/kmmuzahid/flutter_core_kit.git
+      ref: 1.0.67
 
   flutter_riverpod:
   riverpod_annotation:
@@ -32,12 +34,12 @@ dev_dependencies:
 
   riverpod_generator:
   riverpod_lint:
-  build_runner: 
-  auto_route_generator: 
+  build_runner:
+  auto_route_generator:
   flutter_gen_runner:
-  flutter_lints: 
-  flutter_launcher_icons: 
-  change_app_package_name: ^1.5.0 
+  flutter_lints:
+  flutter_launcher_icons:
+  change_app_package_name: ^1.5.0
 
 flutter:
   uses-material-design: true
